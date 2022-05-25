@@ -177,7 +177,7 @@ void triggerAnalysis(std::string configFile = "triggerAnalysis.conf",
 
 	
 
-	std::cout << "running triggerAnalysis()" << std::endl;
+    std::cout << "running triggerAnalysis()" << std::endl;
     std::cout << "configFile  = " << configFile.c_str() << std::endl;
     std::cout << "inputFile   = " << inputFile.c_str()  << std::endl;
     std::cout << "outputFile  = " << outputFile.c_str() << std::endl;
