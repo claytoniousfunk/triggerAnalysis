@@ -1,6 +1,8 @@
 # triggerAnalysis
 Code for HLT analysis work.
 
+Heavily borrows from https://github.com/CmsHI/ElectroWeak-Jet-Track-Analyses.git, including the event matching method, configuration, and design.
+
 # How to run
 All the files necessary to run the code are in the /Performance/objects folder.  Simply run "root -l triggerAnalysis.C" in  that folder.
 
