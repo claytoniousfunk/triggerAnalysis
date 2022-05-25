@@ -13,3 +13,9 @@ openHLT.root - This is the trigger emulation file.
 
 triggerAnalysis.conf - This is the configuration file, designed to be read by the "ConfigurationParser" object.
 
+# Problems
+
+At the moment of this writing (5/25/22 17:17 Chicago time), the code is not successfully analyzing the trigger bits.  This problem is still being debuged.
+
+
+
