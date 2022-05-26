@@ -15,9 +15,9 @@ triggerAnalysis.conf - This is the configuration file, designed to be read by th
 
 # Logic & Problems
 
-The code begins here https://github.com/claytoniousfunk/triggerAnalysis/blob/ab514d6b3e6af7dc415fc6383fddfb107585473d/Performance/objects/triggerAnalysis.C#L173 We open up the 3 main files, listed above.
+The code begins here https://github.com/claytoniousfunk/triggerAnalysis/blob/cc13f3dcf05b3123d3ffb392c36a0bc2ca5a696c/Performance/objects/triggerAnalysis.C#L173-L176 We open up the 3 main files, listed above.
 
-We read the configuration here https://github.com/claytoniousfunk/triggerAnalysis/blob/ab514d6b3e6af7dc415fc6383fddfb107585473d/Performance/objects/triggerAnalysis.C#L188  I had some problems with the ConfigurationParser and could not get it to properly load the trigger list.  As a work-around, I hard coded the list of triggers into the code here https://github.com/claytoniousfunk/triggerAnalysis/blob/ab514d6b3e6af7dc415fc6383fddfb107585473d/Performance/objects/triggerAnalysis.C#L624  We print the configuration to see that everything is configured properly.
+We read the configuration here https://github.com/claytoniousfunk/triggerAnalysis/blob/ab514d6b3e6af7dc415fc6383fddfb107585473d/Performance/objects/triggerAnalysis.C#L188  I had some problems with the ConfigurationParser and could not get it to properly load the trigger list.  As a work-around, I hard coded the list of triggers into the code here https://github.com/claytoniousfunk/triggerAnalysis/blob/cc13f3dcf05b3123d3ffb392c36a0bc2ca5a696c/Performance/objects/triggerAnalysis.C#L624-L627  We print the configuration to see that everything is configured properly.
 
 We parse the input data files (even though in this case we only have one), define some trees that may be of interest, count and ouput the number of files to be analyzed, and print out the hiForest information, done here https://github.com/claytoniousfunk/triggerAnalysis/blob/ab514d6b3e6af7dc415fc6383fddfb107585473d/Performance/objects/triggerAnalysis.C#L200-L238
 
