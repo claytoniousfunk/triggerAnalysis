@@ -16,6 +16,6 @@ The code to run here is ~triggerAnalysisSimple.C~.  This is a simplified version
 After the necessary files are obtained, run the code as follows:
 
 #+BEGIN_SRC sh
-  root -l 'triggerAnalysisSimple("/path/to/openHLT.root","/path/to/AOD.root","/path/to/output.root")'
+  root -l 'triggerAnalysisSimple.C("/path/to/openHLT.root","/path/to/AOD.root","/path/to/output.root")'
 #+END_SRC
 
