@@ -1,0 +1,88 @@
+using namespace std;
+
+Float_t ptMin = 0.;
+Float_t ptMax = 300.;
+Int_t NPtBins = 30;
+
+Float_t etaMin = -5.0;
+Float_t etaMax = 5.0;
+Float_t NEtaBins = 100;
+
+Float_t phiMin = -TMath::Pi();
+Float_t phiMax = TMath::Pi();
+Float_t NPhiBins = 100;
+
+TH1D *jetpt = new TH1D("jetpt","jetpt",NPtBins,ptMin,ptMax);
+TH1D *jeteta = new TH1D("jeteta","jeteta",NEtaBins,etaMin,etaMax);
+TH1D *jetphi = new TH1D("jetphi","jetphi",NPhiBins,phiMin,phiMax);
+
+
+void skeleton(TString input = "/home/clayton/Analysis/code/triggerAnalysis/rootFiles/prompt/merge/0000/HiForestMINIAOD_numEvent20_12.root", TString output = "out.root"){
+
+    std::cout << "running skeleton()" << std::endl;
+    std::cout << "inputFile   = " << input  << std::endl;
+    std::cout << "outputFile  = " << output << std::endl;	
+
+
+    std::cout << "### opening input file... ###" << std::endl; 
+    TFile* inputFile = TFile::Open(input);
+
+    TTree* treeJet = 0;
+        
+    TFile* file = 0;
+    
+    std::cout << "### opening file ###" << std::endl;
+    file = TFile::Open(input);
+    file->cd();
+   
+
+    //treeJet = (TTree*)fileTmp->Get("ak4PFJetAnalyzer/t");
+    treeJet = (TTree*) file->Get("akCs4PFJetAnalyzer/t");
+    Long64_t entries = treeJet->GetEntries();
+    treeJet->SetBranchStatus("*",0);     // disable all branches
+    treeJet->SetBranchStatus("jtpt",1);   // enable event information
+    treeJet->SetBranchStatus("jteta",1);
+    treeJet->SetBranchStatus("jtphi",1);
+    treeJet->SetBranchStatus("nref",1);
+
+    const unsigned int maxJets = 10000;
+    
+    Float_t jtpt[maxJets];
+    Float_t jteta[maxJets];
+    Float_t jtphi[maxJets];
+    Int_t nref;
+
+    treeJet->SetBranchAddress("jtpt",&jtpt);
+    treeJet->SetBranchAddress("jteta",&jteta);
+    treeJet->SetBranchAddress("jtphi",&jtphi);
+    treeJet->SetBranchAddress("nref",&nref);
+    
+
+    // loop through reco objects
+    for (Long64_t j_entry = 0; j_entry < entries; ++j_entry){
+        
+	treeJet->GetEntry(j_entry);
+        
+        for(Int_t i_jet = 0; i_jet < nref; i_jet++){
+        
+           jetpt->Fill(jtpt[i_jet]);
+           jeteta->Fill(jteta[i_jet]);
+           jetphi->Fill(jtphi[i_jet]);
+	}
+
+
+
+    }
+		    
+    TFile *fileOuput = TFile::Open(output,"recreate");
+
+    jetpt->Write();
+    jeteta->Write();
+    jetphi->Write();
+
+    fileOutput->Close();
+    
+
+}
+
+

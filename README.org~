@@ -9,16 +9,4 @@ Therefore, full forests of ~AOD~ and output of ~openHLT~ must be merged into a s
 The reason for this requirement is because the ~run-lumi-event~ map, which is used to match ~AOD~ and ~openHLT~ events (events are not in the same order between the two data types), which is required to calculate the trigger efficiency.
 
 
-* How to generate the necessary data
-
-The code to run here is ~triggerAnalysisSimple.C~.  This is a simplified version of an outdated trigger analyzer.
-
-After the necessary files are obtained, run the code as follows:
-
-#+BEGIN_SRC sh
-  root -l 'triggerAnalysisSimple.C("/path/to/openHLT.root","/path/to/AOD.root","/path/to/output.root")'
-#+END_SRC
-
-
-
-
+* How to run

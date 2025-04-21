@@ -1,4 +1,9 @@
+#include "/home/clayton/Analysis/code/bJetMuonTaggingAnalysis/headers/functions/getDr.h"
+
 using namespace std;
+
+TH1D *h_dr = new TH1D("h_dr","h_dr",100,0,1);
+TH2D *H_hlt_forest_pt = new TH2D("H_hlt_forest_pt","hlt pt vs gen forest pt",500,0,5,500,0,500);
 
 Float_t ptMin = 0.;
 Float_t ptMax = 300.;
@@ -15,13 +20,11 @@ Float_t NPhiBins = 100;
 TH1D *denom = new TH1D("denom","denom",NPtBins,ptMin,ptMax);
 TH1D *denomEta_40 = new TH1D("denomEta_40","denomEta_40",NEtaBins,etaMin,etaMax);
 TH1D *denomEta_60 = new TH1D("denomEta_60","denomEta_60",NEtaBins,etaMin,etaMax);
-TH1D *denomEta_70 = new TH1D("denomEta_70","denomEta_70",NEtaBins,etaMin,etaMax);
 TH1D *denomEta_80 = new TH1D("denomEta_80","denomEta_80",NEtaBins,etaMin,etaMax);
 TH1D *denomEta_100 = new TH1D("denomEta_100","denomEta_100",NEtaBins,etaMin,etaMax);
 TH1D *denomEta_120 = new TH1D("denomEta_120","denomEta_120",NEtaBins,etaMin,etaMax);
 TH1D *denomPhi_40 = new TH1D("denomPhi_40","denomPhi_40",NPhiBins,phiMin,phiMax);
 TH1D *denomPhi_60 = new TH1D("denomPhi_60","denomPhi_60",NPhiBins,phiMin,phiMax);
-TH1D *denomPhi_70 = new TH1D("denomPhi_70","denomPhi_70",NPhiBins,phiMin,phiMax);
 TH1D *denomPhi_80 = new TH1D("denomPhi_80","denomPhi_80",NPhiBins,phiMin,phiMax);
 TH1D *denomPhi_100 = new TH1D("denomPhi_100","denomPhi_100",NPhiBins,phiMin,phiMax);
 TH1D *denomPhi_120 = new TH1D("denomPhi_120","denomPhi_120",NPhiBins,phiMin,phiMax);
@@ -35,11 +38,6 @@ TH1D *num_60 = new TH1D("num_60","num_60",NPtBins,ptMin,ptMax);
 TH1D *numEta_60 = new TH1D("numEta_60","numEta_60",NEtaBins,etaMin,etaMax);
 TH1D *numPhi_60 = new TH1D("numPhi_60","numPhi_60",NPhiBins,phiMin,phiMax);
 TH1D *r_60 = new TH1D("r_60","r_60",NPtBins,ptMin,ptMax);
-
-TH1D *num_70 = new TH1D("num_70","num_70",NPtBins,ptMin,ptMax);
-TH1D *numEta_70 = new TH1D("numEta_70","numEta_70",NEtaBins,etaMin,etaMax);
-TH1D *numPhi_70 = new TH1D("numPhi_70","numPhi_70",NPhiBins,phiMin,phiMax);
-TH1D *r_70 = new TH1D("r_70","r_70",NPtBins,ptMin,ptMax);
 
 TH1D *num_80 = new TH1D("num_80","num_80",NPtBins,ptMin,ptMax);
 TH1D *numEta_80 = new TH1D("numEta_80","numEta_80",NEtaBins,etaMin,etaMax);
@@ -93,8 +91,8 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 
 
-void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/code/HLTAnalysis/rootFiles/openHLT_PYTHIA8_DiJet_5p36TeV.root",
-                           std::string inputFile = "/home/clayton/Analysis/code/HLTAnalysis/rootFiles/HiForestMiniAOD_PYTHIA8_DiJet.root",
+void jetAnalysis(std::string triggerFile = "/home/clayton/Analysis/code/HLTAnalysis/rootFiles/openHLT_pp_DiJet_JEC_newGT.root",
+                           std::string inputFile = "/home/clayton/Analysis/code/HLTAnalysis/rootFiles/HiForestMiniAOD_newCaloParams.root",
                            std::string outputFile = "out.root"){
 
     std::cout << "running triggerAnalysis()" << std::endl;
@@ -108,6 +106,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 
     TTree* treeggHiNtuplizer = 0;
     TTree* treeJet = 0;
+    TTree* treeHLTJet = 0;
     TTree* treeHiEvt = 0;
     TTree* treeTrig = 0;
         
@@ -117,10 +116,19 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     std::cout << "### HLT bit analysis file ###" << std::endl;
     fileTrig = TFile::Open(triggerFile.c_str(), "READ");
     fileTrig->cd();
+
+    std::string treeHLTJetPath = "hltobject/HLT_AK4PFJet40_v";
+    treeHLTJet = (TTree*) fileTrig->Get(treeHLTJetPath.c_str());
+    treeHLTJet->SetBranchStatus("*",0);
+    treeHLTJet->SetBranchStatus("pt",1);
+    treeHLTJet->SetBranchStatus("eta",1);
+    treeHLTJet->SetBranchStatus("phi",1);
     
     std::string treeTrigPath = "hltanalysis/HltTree";
     treeTrig = (TTree*)fileTrig->Get(treeTrigPath.c_str());
     treeTrig->SetBranchStatus("*",0);     // disable all branches
+
+
 
     // specify explicitly which branches to use
     treeTrig->SetBranchStatus("Event", 1);
@@ -153,7 +161,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     
     treeTrig->SetBranchStatus("HLT_AK4CaloJet40_v", 1);
     treeTrig->SetBranchStatus("HLT_AK4CaloJet60_v", 1);
-    treeTrig->SetBranchStatus("HLT_AK4CaloJet80_v", 1);
+    treeTrig->SetBranchStatus("HLT_AK4CaloJet70_v", 1);
     treeTrig->SetBranchStatus("HLT_AK4CaloJet100_v", 1);
     treeTrig->SetBranchStatus("HLT_AK4CaloJet120_v", 1);
     
@@ -165,7 +173,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 
     treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd40_v", 1);
     treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd60_v", 1);
-    treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd80_v", 1);
+    treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd70_v", 1);
     treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd100_v", 1);
     treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd120_v", 1);
     
@@ -174,32 +182,6 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd70_noL1Seed_v", 1);
     treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd100_noL1Seed_v", 1);
     treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd120_noL1Seed_v", 1);
-
-    treeTrig->SetBranchStatus("HLT_HICsAK4PFJet40Eta2p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HICsAK4PFJet60Eta2p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HICsAK4PFJet80Eta2p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HICsAK4PFJet100Eta2p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HICsAK4PFJet120Eta2p1_v", 1);
-
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet40Eta5p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet60Eta5p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet80Eta5p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet100Eta5p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet120Eta5p1_v", 1);
-    
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJetFwd40_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJetFwd60_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJetFwd80_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJetFwd100_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJetFwd120_v", 1);
-
-
-
-
-
-
-
-    
     
     //Int_t hlt_event;
     ULong64_t       hlt_event;
@@ -207,7 +189,6 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     Int_t           hlt_run;
     Bool_t          triggerDecision_40;
     Bool_t          triggerDecision_60;
-    Bool_t          triggerDecision_70;
     Bool_t          triggerDecision_80;
     Bool_t          triggerDecision_100;
     Bool_t          triggerDecision_120;
@@ -228,26 +209,23 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd100_noL1Seed_v",&triggerDecision_100);
     // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd120_noL1Seed_v",&triggerDecision_120);
     
-    // treeTrig->SetBranchAddress("HLT_AK4PFJet40_v",&triggerDecision_40);
-    // treeTrig->SetBranchAddress("HLT_AK4PFJet60_v",&triggerDecision_60);
-    // treeTrig->SetBranchAddress("HLT_AK4PFJet70_v",&triggerDecision_70);
-    // treeTrig->SetBranchAddress("HLT_AK4PFJet80_v",&triggerDecision_80);
-    // treeTrig->SetBranchAddress("HLT_AK4PFJet100_v",&triggerDecision_100);
-    // treeTrig->SetBranchAddress("HLT_AK4PFJet120_v",&triggerDecision_120);
+    treeTrig->SetBranchAddress("HLT_AK4PFJet40_v",&triggerDecision_40);
+    treeTrig->SetBranchAddress("HLT_AK4PFJet60_v",&triggerDecision_60);
+    treeTrig->SetBranchAddress("HLT_AK4PFJet80_v",&triggerDecision_80);
+    treeTrig->SetBranchAddress("HLT_AK4PFJet100_v",&triggerDecision_100);
+    treeTrig->SetBranchAddress("HLT_AK4PFJet120_v",&triggerDecision_120);
      
-    //treeTrig->SetBranchAddress("HLT_AK4PFJet40_noL1Seed_v",&triggerDecision_40);
-    //treeTrig->SetBranchAddress("HLT_AK4PFJet60_noL1Seed_v",&triggerDecision_60);
-    //treeTrig->SetBranchAddress("HLT_AK4PFJet70_noL1Seed_v",&triggerDecision_70);
-    //treeTrig->SetBranchAddress("HLT_AK4PFJet80_noL1Seed_v",&triggerDecision_80);
-    //treeTrig->SetBranchAddress("HLT_AK4PFJet100_noL1Seed_v",&triggerDecision_100);
-    //treeTrig->SetBranchAddress("HLT_AK4PFJet120_noL1Seed_v",&triggerDecision_120);
+    // treeTrig->SetBranchAddress("HLT_AK4PFJet40_noL1Seed_v",&triggerDecision_40);
+    // treeTrig->SetBranchAddress("HLT_AK4PFJet60_noL1Seed_v",&triggerDecision_60);
+    // treeTrig->SetBranchAddress("HLT_AK4PFJet80_noL1Seed_v",&triggerDecision_80);
+    // treeTrig->SetBranchAddress("HLT_AK4PFJet100_noL1Seed_v",&triggerDecision_100);
+    // treeTrig->SetBranchAddress("HLT_AK4PFJet120_noL1Seed_v",&triggerDecision_120);
     
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet40_v",&triggerDecision_40);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet60_v",&triggerDecision_60);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet70_v",&triggerDecision_70);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet80_v",&triggerDecision_80);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet100_v",&triggerDecision_100);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet120_v",&triggerDecision_120);
+    //treeTrig->SetBranchAddress("HLT_AK4CaloJet40_v",&triggerDecision_40);
+    //treeTrig->SetBranchAddress("HLT_AK4CaloJet60_v",&triggerDecision_60);
+    //treeTrig->SetBranchAddress("HLT_AK4CaloJet70_v",&triggerDecision_80);
+    //treeTrig->SetBranchAddress("HLT_AK4CaloJet100_v",&triggerDecision_100);
+    //treeTrig->SetBranchAddress("HLT_AK4CaloJet120_v",&triggerDecision_120);
     
     //treeTrig->SetBranchAddress("HLT_AK4CaloJet40_noL1Seed_v",&triggerDecision_40);
     // treeTrig->SetBranchAddress("HLT_AK4CaloJet60_noL1Seed_v",&triggerDecision_60);
@@ -257,7 +235,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 
     // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd40_v",&triggerDecision_40);
     // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd60_v",&triggerDecision_60);
-    // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd80_v",&triggerDecision_80);
+    // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd70_v",&triggerDecision_80);
     // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd100_v",&triggerDecision_100);
     // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd120_v",&triggerDecision_120);
     
@@ -266,26 +244,6 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd70_noL1Seed_v",&triggerDecision_80);
     // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd100_noL1Seed_v",&triggerDecision_100);
     // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd120_noL1Seed_v",&triggerDecision_120);
-
-    // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet40Eta2p1_v", &triggerDecision_40);
-    // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet60Eta2p1_v", &triggerDecision_60);
-    // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet80Eta2p1_v", &triggerDecision_80);
-    // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet100Eta2p1_v", &triggerDecision_100);
-    // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet120Eta2p1_v", &triggerDecision_120);
-
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_v", &triggerDecision_40);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_v", &triggerDecision_60);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v", &triggerDecision_80);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v", &triggerDecision_100);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v", &triggerDecision_120);
-
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v", &triggerDecision_40);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v", &triggerDecision_60);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Fwd_v", &triggerDecision_80);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v", &triggerDecision_100);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v", &triggerDecision_120);
-
-    
     
 
     
@@ -317,11 +275,13 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     std::map<unsigned long long, int> runLumiEvtToEntryMap;
     
     treeJet = (TTree*)fileTmp->Get("ak4PFJetAnalyzer/t");
-    //treeJet = (TTree*)fileTmp->Get("akCs4PFJetAnalyzer/t");
     treeJet->SetBranchStatus("*",0);     // disable all branches
     treeJet->SetBranchStatus("jtpt",1);   // enable event information
     treeJet->SetBranchStatus("jteta",1);
     treeJet->SetBranchStatus("jtphi",1);
+    treeJet->SetBranchStatus("genpt",1);   // enable event information
+    treeJet->SetBranchStatus("geneta",1);
+    treeJet->SetBranchStatus("genphi",1);
     treeJet->SetBranchStatus("nref",1);
 
     const unsigned int maxJets = 10000;
@@ -329,14 +289,27 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     Float_t jtpt[maxJets];
     Float_t jteta[maxJets];
     Float_t jtphi[maxJets];
+    Float_t genjtpt[maxJets];
+    Float_t genjteta[maxJets];
+    Float_t genjtphi[maxJets];
     Int_t nref;
 
     treeJet->SetBranchAddress("jtpt",&jtpt);
     treeJet->SetBranchAddress("jteta",&jteta);
     treeJet->SetBranchAddress("jtphi",&jtphi);
+    treeJet->SetBranchAddress("genpt",&genjtpt);
+    treeJet->SetBranchAddress("geneta",&genjteta);
+    treeJet->SetBranchAddress("genphi",&genjtphi);
     treeJet->SetBranchAddress("nref",&nref);
-    
-    
+
+    std::vector<Float_t> *jtpt_hlt=0;
+    std::vector<Float_t> *jteta_hlt=0;
+    std::vector<Float_t> *jtphi_hlt=0;
+
+    treeHLTJet->SetBranchAddress("pt",&jtpt_hlt);
+    treeHLTJet->SetBranchAddress("eta",&jteta_hlt);
+    treeHLTJet->SetBranchAddress("phi",&jtphi_hlt);
+        
     treeHiEvt = (TTree*)fileTmp->Get("hiEvtAnalyzer/HiTree");
     treeHiEvt->SetBranchStatus("*",0);     // disable all branches
     treeHiEvt->SetBranchStatus("run",1);   // enable event information
@@ -402,7 +375,11 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
         else i_entry = runLumiEvtToEntryMap.at(key);
 
         //std::cout << "i_entry = " << i_entry << std::endl;
-        
+
+	
+
+
+	
         // now fill the denominator
         Float_t maxPt_denom = 0;
         Float_t maxEta_denom = 0;
@@ -421,7 +398,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 	}
 
         //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
-        if(fabs(maxEta_denom)>1.6) continue; // skip event if the leading jet is outside eta range
+        if(fabs(maxEta_denom)>3.0) continue; // skip event if the leading jet is outside eta range
 
 	    if(maxPt_denom > 0) {
             
@@ -439,12 +416,6 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 	      }
 	    }
 	    if(maxPt_denom > 60){
-	      denomEta_70->Fill(maxEta_denom,weight);
-	      if(fabs(maxEta_denom) < 5.0){
-		denomPhi_70->Fill(maxPhi_denom,weight);
-	      }
-	    }
-	    if(maxPt_denom > 70){
 	      denomEta_80->Fill(maxEta_denom,weight);
 	      if(fabs(maxEta_denom) < 5.0){
 		denomPhi_80->Fill(maxPhi_denom,weight);
@@ -471,11 +442,61 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 
 
         treeTrig->GetEntry(i_entry); // get trigger decision from HLT emulation
+	treeHLTJet->GetEntry(i_entry);
 
+	
 
+	
 
 
 	if(triggerDecision_40) {// only fill the numerator if the trigger is on.
+
+	  cout << "evt: " << i_entry << endl;
+	  
+	  for(int z = 0; z < jtpt_hlt->size(); z++){
+
+	    double hlt_pt = jtpt_hlt->at(z);
+	    double hlt_eta = jteta_hlt->at(z);
+	    double hlt_phi = jtphi_hlt->at(z);
+
+	    double forest_match_pt = 0.0;
+	    double forest_match_eta = 0.0;
+	    double forest_match_phi = 0.0;
+	    
+	    double hlt_match_dr = 100.0;
+	    bool hlt_is_matched = false;
+
+	    cout << "--- Jet #" << z << ": (" << hlt_pt << ", " << hlt_eta << ", " << hlt_phi << ") " << endl;
+
+	    for(int y = 0; y < nref; y++){
+
+	      double forest_pt = genjtpt[y];
+	      double forest_eta = genjteta[y];
+	      double forest_phi = genjtphi[y];
+	      
+	      double hlt_forest_dr = getDr(hlt_eta,hlt_phi,forest_eta,forest_phi);
+
+	      if(hlt_forest_dr < hlt_match_dr){
+		hlt_match_dr = hlt_forest_dr;
+		forest_match_pt = forest_pt;
+		forest_match_eta = forest_eta;
+		forest_match_phi = forest_phi;
+	      }
+
+	      
+
+	    }
+
+	    h_dr->Fill(hlt_match_dr,weight);
+	    if(hlt_match_dr < 0.3){
+	      H_hlt_forest_pt->Fill(hlt_pt/forest_match_pt,forest_match_pt,weight);
+	    }
+	    
+
+	  }
+	  
+
+	  
 
             Float_t maxPt_num = 0;
 	    Float_t maxEta_num = 0;
@@ -545,43 +566,6 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
             } 
 
         }
-
-
-        if(triggerDecision_70) {// only fill the numerator if the trigger is on.
-
-            Float_t maxPt_num = 0;
-	    Float_t maxEta_num = 0;
-	    Float_t maxPhi_num = 0;
-            
-            // now fill the numerator
-            for(Int_t i_jet = 0; i_jet < nref; i_jet++){
-
-                // no eta cut needed since already applied after the first jet loop.  
-
-                if(jtpt[i_jet] > maxPt_num) { // find the leading jetPt in events with trigger on.
-                    maxPt_num = jtpt[i_jet];
-		    maxEta_num = jteta[i_jet];
-		    maxPhi_num = jtphi[i_jet];
-                }
-
-
-            }
-
-            if(maxPt_num > 0){
-
-                num_70->Fill(maxPt_num,weight);
-		if(maxPt_num > 60){
-		  numEta_70->Fill(maxEta_num,weight);
-		  if(fabs(maxEta_num) < 5.0){
-		    numPhi_70->Fill(maxPhi_num,weight);
-		  }
-		}
-                //std::cout << "maxPt_num = " << maxPt_num << std::endl <<  std::endl;
-            } 
-
-        }
-
-
 
 	
 	//cout << "--- CaloJet80 Jets ---" << endl;
@@ -704,28 +688,24 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 
     r_40->Divide(num_40,denom,1,1,"B");
     r_60->Divide(num_60,denom,1,1,"B");
-    r_70->Divide(num_70,denom,1,1,"B");
     r_80->Divide(num_80,denom,1,1,"B");
     r_100->Divide(num_100,denom,1,1,"B");
     r_120->Divide(num_120,denom,1,1,"B");
 
     r_40->SetLineColor(kGray);
     r_60->SetLineColor(kRed);
-    r_70->SetLineColor(kBlack);
     r_80->SetLineColor(kBlue);
     r_100->SetLineColor(kGreen);
     r_120->SetLineColor(kMagenta);
 
     r_40->SetMarkerColor(kGray);
     r_60->SetMarkerColor(kRed);
-    r_70->SetMarkerColor(kBlack);
     r_80->SetMarkerColor(kBlue);
     r_100->SetMarkerColor(kGreen);
     r_120->SetMarkerColor(kMagenta);
 
     r_40->SetMarkerStyle(23);
     r_60->SetMarkerStyle(24);
-    r_70->SetMarkerStyle(33);
     r_80->SetMarkerStyle(25);
     r_100->SetMarkerStyle(26);
     r_120->SetMarkerStyle(32);
@@ -741,35 +721,14 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     r_60->SetStats(0);
     r_60->GetXaxis()->SetTitleSize(0.05);
     r_60->GetYaxis()->SetTitleSize(0.05);
-    r_60->GetXaxis()->SetTitle("leading PF jet #font[52]{p}_{T} [GeV]");
+    r_60->GetXaxis()->SetTitle("leading jet #font[52]{p}_{T} [GeV]");
     r_60->GetYaxis()->SetTitle("Trigger efficiency");
-
     TLegend *leg = new TLegend(0.55,0.3,0.88,0.5);
-
-    // leg->AddEntry(r_40,"HLT_AK4PFJet40");
-    // leg->AddEntry(r_60,"HLT_AK4PFJet60");
-    // leg->AddEntry(r_80,"HLT_AK4PFJet80");
-    // leg->AddEntry(r_100,"HLT_AK4PFJet100");
-    // leg->AddEntry(r_120,"HLT_AK4PFJet120");
-
-    leg->AddEntry(r_40,"HLT_AK4CaloJet40");
-    leg->AddEntry(r_60,"HLT_AK4CaloJet60");
-    leg->AddEntry(r_80,"HLT_AK4CaloJet80");
-    leg->AddEntry(r_100,"HLT_AK4CaloJet100");
-    leg->AddEntry(r_120,"HLT_AK4CaloJet120");
-
-    // leg->AddEntry(r_40,"HLT_AK4PFJetFwd40");
-    // leg->AddEntry(r_60,"HLT_AK4PFJetFwd60");
-    // leg->AddEntry(r_80,"HLT_AK4PFJetFwd80");
-    // leg->AddEntry(r_100,"HLT_AK4PFJetFwd100");
-    // leg->AddEntry(r_120,"HLT_AK4PFJetFwd120");
-
-    // leg->AddEntry(r_40,"HLT_AK4CaloJetFwd40");
-    // leg->AddEntry(r_60,"HLT_AK4CaloJetFwd60");
-    // leg->AddEntry(r_80,"HLT_AK4CaloJetFwd80");
-    // leg->AddEntry(r_100,"HLT_AK4CaloJetFwd100");
-    // leg->AddEntry(r_120,"HLT_AK4CaloJetFwd120");
-    
+    leg->AddEntry(r_40,"HLT_AK4PFJet40");
+    leg->AddEntry(r_60,"HLT_AK4PFJet60");
+    leg->AddEntry(r_80,"HLT_AK4PFJet80");
+    leg->AddEntry(r_100,"HLT_AK4PFJet100");
+    leg->AddEntry(r_120,"HLT_AK4PFJet120");
     //leg->SetBorderSize(0);
     r_60->Draw();
     leg->Draw();
@@ -784,8 +743,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 
     la->DrawLatexNDC(0.6,0.75,"PYTHIA");
     la->DrawLatexNDC(0.6,0.69,"Run 3 MC");
-    la->DrawLatexNDC(0.6,0.63,"|#eta^{jet}| < 1.6");
-    //la->DrawLatexNDC(0.6,0.63,"3.2 < |#eta^{jet}| < 4.7");
+    la->DrawLatexNDC(0.6,0.63,"|#eta^{jet}| < 1.5");
 
  
 
@@ -796,45 +754,42 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
 
     denomEta_40->Write();
     denomEta_60->Write();
-    denomEta_70->Write();
     denomEta_80->Write();
     denomEta_100->Write();
     denomEta_120->Write();
 
     denomPhi_40->Write();
     denomPhi_60->Write();
-    denomPhi_70->Write();
     denomPhi_80->Write();
     denomPhi_100->Write();
     denomPhi_120->Write();
 
     num_40->Write();
     num_60->Write();
-    num_70->Write();
     num_80->Write();
     num_100->Write();
     num_120->Write();
 
     numEta_40->Write();
     numEta_60->Write();
-    numEta_70->Write();
     numEta_80->Write();
     numEta_100->Write();
     numEta_120->Write();
 
     numPhi_40->Write();
     numPhi_60->Write();
-    numPhi_70->Write();
     numPhi_80->Write();
     numPhi_100->Write();
     numPhi_120->Write();
 
     r_40->Write();
     r_60->Write();
-    r_70->Write();
     r_80->Write();
     r_100->Write();
     r_120->Write();
+
+    h_dr->Write();
+    H_hlt_forest_pt->Write();
 
     wf->Close();
 
