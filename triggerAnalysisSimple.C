@@ -332,11 +332,14 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     Float_t jtphi[maxJets];
     Int_t nref;
 
-    treeJet->SetBranchAddress("jtpt",&jtpt);
-    treeJet->SetBranchAddress("jteta",&jteta);
-    treeJet->SetBranchAddress("jtphi",&jtphi);
-    treeJet->SetBranchAddress("nref",&nref);
-    
+    // treeJet->SetBranchAddress("jtpt",&jtpt);
+    // treeJet->SetBranchAddress("jteta",&jteta);
+    // treeJet->SetBranchAddress("jtphi",&jtphi);
+    // treeJet->SetBranchAddress("nref",&nref);
+    tree_Jet->SetBranchAddress("calopt",&jtpt);
+    tree_Jet->SetBranchAddress("caloeta",&jteta);
+    tree_Jet->SetBranchAddress("calophi",&jtphi);
+    tree_Jet->SetBranchAddress("ncalo",&nref);    
     
     treeHiEvt = (TTree*)fileTmp->Get("hiEvtAnalyzer/HiTree");
     treeHiEvt->SetBranchStatus("*",0);     // disable all branches
@@ -742,7 +745,8 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     r_60->SetStats(0);
     r_60->GetXaxis()->SetTitleSize(0.05);
     r_60->GetYaxis()->SetTitleSize(0.05);
-    r_60->GetXaxis()->SetTitle("leading PF jet #font[52]{p}_{T} [GeV]");
+    //r_60->GetXaxis()->SetTitle("leading PF jet #font[52]{p}_{T} [GeV]");
+    r_60->GetXaxis()->SetTitle("leading Calo jet #font[52]{p}_{T} [GeV]");
     r_60->GetYaxis()->SetTitle("Trigger efficiency");
 
     TLegend *leg = new TLegend(0.55,0.3,0.88,0.5);
