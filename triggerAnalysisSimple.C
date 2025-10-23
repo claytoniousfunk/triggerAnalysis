@@ -181,8 +181,8 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     treeTrig->SetBranchStatus("HLT_HICsAK4PFJet100Eta2p1_v", 1);
     treeTrig->SetBranchStatus("HLT_HICsAK4PFJet120Eta2p1_v", 1);
 
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet40Eta5p1_v", 1);
-    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet60Eta5p1_v", 1);
+    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v", 1);
+    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v", 1);
     treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet80Eta5p1_v", 1);
     treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet100Eta5p1_v", 1);
     treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet120Eta5p1_v", 1);
@@ -303,7 +303,8 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     fileTmp->cd();
 
 
-    std::string treePath = "ggHiNtuplizer/EventTree";
+    //std::string treePath = "hiEvtAnalyzer/EventTree";
+    std::string treePath = "hiEvtAnalyzer/HiTree";
 
     // read one tree only to get the number of entries
     treeggHiNtuplizer = (TTree*)fileTmp->Get(treePath.c_str());
