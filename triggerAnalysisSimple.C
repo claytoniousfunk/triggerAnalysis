@@ -93,8 +93,8 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 
 
-void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/code/HLTAnalysis/rootFiles/openHLT_PYTHIA8_DiJet_5p36TeV.root",
-                           std::string inputFile = "/home/clayton/Analysis/code/HLTAnalysis/rootFiles/HiForestMiniAOD_PYTHIA8_DiJet.root",
+void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_heavyions/cbennett/openHLT_PbPb_2025/openHLT_PbPb_2025_merge.root",
+                           std::string inputFile = "/eos/cms/store/group/phys_heavyions/cbennett/QCD_pThat-15to9999_TuneCP5_5p36TeV_pythia8_hydjet_miniAOD2025-10-11/QCD_pThat-15to9999_TuneCP5_5p36TeV_pythia8_hydjet_miniAOD_merge.root",
                            std::string outputFile = "out.root"){
 
     std::cout << "running triggerAnalysis()" << std::endl;
@@ -242,12 +242,12 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     //treeTrig->SetBranchAddress("HLT_AK4PFJet100_noL1Seed_v",&triggerDecision_100);
     //treeTrig->SetBranchAddress("HLT_AK4PFJet120_noL1Seed_v",&triggerDecision_120);
     
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet40_v",&triggerDecision_40);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet60_v",&triggerDecision_60);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet70_v",&triggerDecision_70);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet80_v",&triggerDecision_80);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet100_v",&triggerDecision_100);
-    treeTrig->SetBranchAddress("HLT_AK4CaloJet120_v",&triggerDecision_120);
+    // treeTrig->SetBranchAddress("HLT_AK4CaloJet40_v",&triggerDecision_40);
+    // treeTrig->SetBranchAddress("HLT_AK4CaloJet60_v",&triggerDecision_60);
+    // treeTrig->SetBranchAddress("HLT_AK4CaloJet70_v",&triggerDecision_70);
+    // treeTrig->SetBranchAddress("HLT_AK4CaloJet80_v",&triggerDecision_80);
+    // treeTrig->SetBranchAddress("HLT_AK4CaloJet100_v",&triggerDecision_100);
+    // treeTrig->SetBranchAddress("HLT_AK4CaloJet120_v",&triggerDecision_120);
     
     //treeTrig->SetBranchAddress("HLT_AK4CaloJet40_noL1Seed_v",&triggerDecision_40);
     // treeTrig->SetBranchAddress("HLT_AK4CaloJet60_noL1Seed_v",&triggerDecision_60);
@@ -273,11 +273,11 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet100Eta2p1_v", &triggerDecision_100);
     // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet120Eta2p1_v", &triggerDecision_120);
 
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_v", &triggerDecision_40);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_v", &triggerDecision_60);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v", &triggerDecision_80);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v", &triggerDecision_100);
-    // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v", &triggerDecision_120);
+    treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v", &triggerDecision_40);
+    treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v", &triggerDecision_60);
+    treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v", &triggerDecision_80);
+    treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v", &triggerDecision_100);
+    treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v", &triggerDecision_120);
 
     // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v", &triggerDecision_40);
     // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v", &triggerDecision_60);
@@ -752,11 +752,17 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     // leg->AddEntry(r_100,"HLT_AK4PFJet100");
     // leg->AddEntry(r_120,"HLT_AK4PFJet120");
 
-    leg->AddEntry(r_40,"HLT_AK4CaloJet40");
-    leg->AddEntry(r_60,"HLT_AK4CaloJet60");
-    leg->AddEntry(r_80,"HLT_AK4CaloJet80");
-    leg->AddEntry(r_100,"HLT_AK4CaloJet100");
-    leg->AddEntry(r_120,"HLT_AK4CaloJet120");
+    // leg->AddEntry(r_40,"HLT_AK4CaloJet40");
+    // leg->AddEntry(r_60,"HLT_AK4CaloJet60");
+    // leg->AddEntry(r_80,"HLT_AK4CaloJet80");
+    // leg->AddEntry(r_100,"HLT_AK4CaloJet100");
+    // leg->AddEntry(r_120,"HLT_AK4CaloJet120");
+
+    leg->AddEntry(r_40,"HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v");
+    leg->AddEntry(r_60,"HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v");
+    leg->AddEntry(r_80,"HLT_HIPuAK4CaloJet80Eta5p1_v");
+    leg->AddEntry(r_100,"HLT_HIPuAK4CaloJet100Eta5p1_v");
+    leg->AddEntry(r_120,"HLT_HIPuAK4CaloJet120Eta5p1_v");
 
     // leg->AddEntry(r_40,"HLT_AK4PFJetFwd40");
     // leg->AddEntry(r_60,"HLT_AK4PFJetFwd60");
@@ -787,7 +793,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/home/clayton/Analysis/cod
     la->DrawLatexNDC(0.6,0.63,"|#eta^{jet}| < 1.6");
     //la->DrawLatexNDC(0.6,0.63,"3.2 < |#eta^{jet}| < 4.7");
 
- 
+    c1->SaveAs("figure.pdf");
 
 
     auto wf = TFile::Open(outputFile.c_str(),"recreate");
