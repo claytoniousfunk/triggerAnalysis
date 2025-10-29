@@ -93,7 +93,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 
 
-void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_heavyions/cbennett/openHLT_PbPb_2025/openHLT_PbPb_2025_merge.root",
+void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_heavyions/cbennett/openHLT_jetTriggersHIonV8_2025-10-29.root",
                            std::string inputFile = "/eos/cms/store/group/phys_heavyions/cbennett/QCD_pThat-15to9999_TuneCP5_5p36TeV_pythia8_hydjet_miniAOD2025-10-11/QCD_pThat-15to9999_TuneCP5_5p36TeV_pythia8_hydjet_miniAOD_merge.root",
                            std::string outputFile = "out.root"){
 
@@ -183,6 +183,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
 
     treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v", 1);
     treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v", 1);
+    treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet60Eta5p1_SingleJet44_v", 1);
     treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet80Eta5p1_v", 1);
     treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet100Eta5p1_v", 1);
     treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet120Eta5p1_v", 1);
@@ -274,6 +275,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet120Eta2p1_v", &triggerDecision_120);
 
     treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v", &triggerDecision_40);
+    //treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_SingleJet44_v", &triggerDecision_60);
     treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v", &triggerDecision_60);
     treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v", &triggerDecision_80);
     treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v", &triggerDecision_100);
@@ -324,6 +326,10 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     treeJet->SetBranchStatus("jteta",1);
     treeJet->SetBranchStatus("jtphi",1);
     treeJet->SetBranchStatus("nref",1);
+    treeJet->SetBranchStatus("calopt",1);   // enable event information
+    treeJet->SetBranchStatus("caloeta",1);
+    treeJet->SetBranchStatus("calophi",1);
+    treeJet->SetBranchStatus("ncalo",1);
 
     const unsigned int maxJets = 10000;
     
@@ -336,10 +342,10 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     // treeJet->SetBranchAddress("jteta",&jteta);
     // treeJet->SetBranchAddress("jtphi",&jtphi);
     // treeJet->SetBranchAddress("nref",&nref);
-    tree_Jet->SetBranchAddress("calopt",&jtpt);
-    tree_Jet->SetBranchAddress("caloeta",&jteta);
-    tree_Jet->SetBranchAddress("calophi",&jtphi);
-    tree_Jet->SetBranchAddress("ncalo",&nref);    
+    treeJet->SetBranchAddress("calopt",&jtpt);
+    treeJet->SetBranchAddress("caloeta",&jteta);
+    treeJet->SetBranchAddress("calophi",&jtphi);
+    treeJet->SetBranchAddress("ncalo",&nref);    
     
     treeHiEvt = (TTree*)fileTmp->Get("hiEvtAnalyzer/HiTree");
     treeHiEvt->SetBranchStatus("*",0);     // disable all branches
@@ -745,8 +751,8 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     r_60->SetStats(0);
     r_60->GetXaxis()->SetTitleSize(0.05);
     r_60->GetYaxis()->SetTitleSize(0.05);
-    //r_60->GetXaxis()->SetTitle("leading PF jet #font[52]{p}_{T} [GeV]");
-    r_60->GetXaxis()->SetTitle("leading Calo jet #font[52]{p}_{T} [GeV]");
+    //r_60->GetXaxis()->SetTitle("leading PF jet  #font[52]{p}_{T} [GeV]");
+    r_60->GetXaxis()->SetTitle("leading Calo jet  #font[52]{p}_{T} [GeV]");
     r_60->GetYaxis()->SetTitle("Trigger efficiency");
 
     TLegend *leg = new TLegend(0.55,0.3,0.88,0.5);
@@ -765,6 +771,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
 
     leg->AddEntry(r_40,"HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v");
     leg->AddEntry(r_60,"HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v");
+    //leg->AddEntry(r_60,"HLT_HIPuAK4CaloJet60Eta5p1_SingleJet44_v");
     leg->AddEntry(r_80,"HLT_HIPuAK4CaloJet80Eta5p1_v");
     leg->AddEntry(r_100,"HLT_HIPuAK4CaloJet100Eta5p1_v");
     leg->AddEntry(r_120,"HLT_HIPuAK4CaloJet120Eta5p1_v");
@@ -793,8 +800,8 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     la->SetTextFont(42);
     la->SetTextSize(0.03);
 
-    la->DrawLatexNDC(0.6,0.75,"PYTHIA");
-    la->DrawLatexNDC(0.6,0.69,"Run 3 MC");
+    la->DrawLatexNDC(0.6,0.75,"PYTHIA+HYDJET");
+    la->DrawLatexNDC(0.6,0.69,"2025 Run 3 MC");
     la->DrawLatexNDC(0.6,0.63,"|#eta^{jet}| < 1.6");
     //la->DrawLatexNDC(0.6,0.63,"3.2 < |#eta^{jet}| < 4.7");
 
