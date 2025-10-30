@@ -193,11 +193,15 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
 
 
   treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
-  treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet24_v1", 1);
   treeTrig->SetBranchStatus("HLT_PFJet40_ZeroBiasCopy_v1", 1);
-  treeTrig->SetBranchStatus("HLT_PFJet80_L1SingleJet60_v1", 1);
+  
   treeTrig->SetBranchStatus("HLT_AK8PFJet140_v31", 1);
-  treeTrig->SetBranchStatus("HLT_PFJet110_v16", 1);  
+  
+  treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet24_v1", 1);
+  treeTrig->SetBranchStatus("HLT_PFJet60_v37", 1);
+  treeTrig->SetBranchStatus("HLT_PFJet80_L1SingleJet60_v1", 1);
+  treeTrig->SetBranchStatus("HLT_PFJet110_v16", 1);
+  treeTrig->SetBranchStatus("HLT_PFJet140_v35", 1);
   // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
   // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
   // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
@@ -297,11 +301,11 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v8", &triggerDecision_100);
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v8", &triggerDecision_120);
 
-  treeTrig->SetBranchAddress("HLT_PFJet110_v16", &triggerDecision_40);
-  treeTrig->SetBranchAddress("HLT_PFJet110_v16", &triggerDecision_60);
-  treeTrig->SetBranchAddress("HLT_PFJet110_v16", &triggerDecision_80);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet24_v1", &triggerDecision_40);
+  treeTrig->SetBranchAddress("HLT_PFJet60_v37", &triggerDecision_60);
+  treeTrig->SetBranchAddress("HLT_PFJet80_L1SingleJet60_v1", &triggerDecision_80);
   treeTrig->SetBranchAddress("HLT_PFJet110_v16", &triggerDecision_100);
-  treeTrig->SetBranchAddress("HLT_PFJet110_v16", &triggerDecision_120);
+  treeTrig->SetBranchAddress("HLT_PFJet140_v35", &triggerDecision_120);
 
     
     
@@ -778,12 +782,12 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   r_60->GetXaxis()->SetTitle("leading jet #font[52]{p}_{T} [GeV]");
   r_60->GetYaxis()->SetTitle("Trigger efficiency");
   TLegend *leg = new TLegend(0.55,0.3,0.88,0.5);
-  leg->AddEntry(r_40,"HLT_AK4PFJet40");
-  leg->AddEntry(r_60,"HLT_AK4PFJet60");
-  leg->AddEntry(r_70,"HLT_AK4PFJet70");
-  leg->AddEntry(r_80,"HLT_AK4PFJet80");
-  leg->AddEntry(r_100,"HLT_AK4PFJet100");
-  leg->AddEntry(r_120,"HLT_AK4PFJet120");
+  leg->AddEntry(r_40,"HLT_PFJet40_L1Jet24_v1");
+  leg->AddEntry(r_60,"HLT_PFJet60_v37");
+  //leg->AddEntry(r_70,"");
+  leg->AddEntry(r_80,"HLT_PFJet80_L1SingleJet60_v1");
+  leg->AddEntry(r_100,"HLT_PFJet110_v16");
+  leg->AddEntry(r_120,"HLT_PFJet140_v35");
   //leg->SetBorderSize(0);
   r_60->Draw();
   leg->Draw();
@@ -797,9 +801,9 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   la->SetTextFont(42);
   la->SetTextSize(0.03);
 
-  la->DrawLatexNDC(0.6,0.75,"PYTHIA");
-  la->DrawLatexNDC(0.6,0.69,"Run 3 MC");
-  la->DrawLatexNDC(0.6,0.63,"|#eta^{jet}| < 1.5");
+  la->DrawLatexNDC(0.6,0.75,"2025 PPRef #sqrt{#it{s}} = 5.36 TeV");
+  //la->DrawLatexNDC(0.6,0.69,"2025 Run 3 MC");
+  la->DrawLatexNDC(0.6,0.69,"|#eta^{jet}| < 1.5");
 
  
 
