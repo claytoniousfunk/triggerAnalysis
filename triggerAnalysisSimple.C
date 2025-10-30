@@ -38,6 +38,12 @@ TH1D *numPhi_60 = new TH1D("numPhi_60","numPhi_60",NPhiBins,phiMin,phiMax);
 //TH1D *r_60 = new TH1D("r_60","r_60",NPtBins,ptMin,ptMax);
 TH1D *r_60 = new TH1D("r_60","r_60",NEtaBins,etaMin,etaMax);
 
+TH1D *num_70 = new TH1D("num_70","num_70",NPtBins,ptMin,ptMax);
+TH1D *numEta_70 = new TH1D("numEta_70","numEta_70",NEtaBins,etaMin,etaMax);
+TH1D *numPhi_70 = new TH1D("numPhi_70","numPhi_70",NPhiBins,phiMin,phiMax);
+//TH1D *r_70 = new TH1D("r_70","r_70",NPtBins,ptMin,ptMax);
+TH1D *r_70 = new TH1D("r_70","r_70",NEtaBins,etaMin,etaMax);
+
 TH1D *num_80 = new TH1D("num_80","num_80",NPtBins,ptMin,ptMax);
 TH1D *numEta_80 = new TH1D("numEta_80","numEta_80",NEtaBins,etaMin,etaMax);
 TH1D *numPhi_80 = new TH1D("numPhi_80","numPhi_80",NPhiBins,phiMin,phiMax);
