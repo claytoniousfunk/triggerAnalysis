@@ -436,7 +436,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
 	}
 
         //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
-        if(fabs(maxEta_denom)>0.5) continue; // skip event if the leading jet is outside eta range
+        if(fabs(maxEta_denom)>0.1) continue; // skip event if the leading jet is outside eta range
 
 	    if(maxPt_denom > 0) {
             
