@@ -110,6 +110,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     TTree* treeJet = 0;
     TTree* treeHiEvt = 0;
     TTree* treeTrig = 0;
+    TTree* treeJet60Objects = 0;
         
     TFile* fileTmp = 0;
     TFile* fileTrig = 0;
@@ -121,6 +122,10 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     std::string treeTrigPath = "hltanalysis/HltTree";
     treeTrig = (TTree*)fileTrig->Get(treeTrigPath.c_str());
     treeTrig->SetBranchStatus("*",0);     // disable all branches
+    
+    std::string treeJet60ObjectsPath = "hltobject/HLT_HIPuAK4CaloJet60Eta5p1_SingleJet44_v";
+    treeJet60Objects = (TTree*) fileTrig->Get(treeJet60ObjectsPath.c_str());
+    treeJet60Objects->SetBranchStatus("*",0);
 
     // specify explicitly which branches to use
     treeTrig->SetBranchStatus("Event", 1);
@@ -431,7 +436,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
 	}
 
         //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
-        if(fabs(maxEta_denom)>1.6) continue; // skip event if the leading jet is outside eta range
+        if(fabs(maxEta_denom)>0.5) continue; // skip event if the leading jet is outside eta range
 
 	    if(maxPt_denom > 0) {
             
