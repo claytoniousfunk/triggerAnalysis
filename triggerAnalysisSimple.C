@@ -739,14 +739,14 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
   r_100->SetMarkerColor(kMagenta-9);
   r_120->SetMarkerColor(kPink+6);
 
-  int line_width = 1.6;
+  double line_width = 1.6;
   r_40->SetLineWidth(line_width);
   r_60->SetLineWidth(line_width);
   r_80->SetLineWidth(line_width);
   r_100->SetLineWidth(line_width);
   r_120->SetLineWidth(line_width);
 
-  double marker_size = 1.6.;
+  double marker_size = 1.6;
   r_40->SetMarkerSize(marker_size);
   r_60->SetMarkerSize(marker_size);
   r_80->SetMarkerSize(marker_size);
