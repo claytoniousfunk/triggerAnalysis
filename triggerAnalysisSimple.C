@@ -823,7 +823,7 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
 
   la->DrawLatexNDC(0.6,0.75,"PYTHIA+HYDJET");
   la->DrawLatexNDC(0.6,0.69,"2025 Run 3 MC");
-  la->DrawLatexNDC(0.6,0.63,Form("%1.1f < |#it{#eta}^{jet}| < %1.1f",cut_eta_min,cut_eta_max));
+  la->DrawLatexNDC(0.6,0.63,Form("%1.2f < |#it{#eta}^{jet}| < %1.2f",cut_eta_min,cut_eta_max));
   //la->DrawLatexNDC(0.6,0.63,"3.2 < |#eta^{jet}| < 4.7");
 
   c1->SaveAs("figure.pdf");
