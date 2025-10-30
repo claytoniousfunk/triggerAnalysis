@@ -339,6 +339,10 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   treeJet->SetBranchStatus("jteta",1);
   treeJet->SetBranchStatus("jtphi",1);
   treeJet->SetBranchStatus("nref",1);
+  treeJet->SetBranchStatus("calopt",1);
+  treeJet->SetBranchStatus("caloeta",1);
+  treeJet->SetBranchStatus("calophi",1);
+  treeJet->SetBranchStatus("ncalo",1);
 
   const unsigned int maxJets = 10000;
     
@@ -347,10 +351,14 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   Float_t jtphi[maxJets];
   Int_t nref;
 
-  treeJet->SetBranchAddress("jtpt",&jtpt);
-  treeJet->SetBranchAddress("jteta",&jteta);
-  treeJet->SetBranchAddress("jtphi",&jtphi);
-  treeJet->SetBranchAddress("nref",&nref);
+  // treeJet->SetBranchAddress("jtpt",&jtpt);
+  // treeJet->SetBranchAddress("jteta",&jteta);
+  // treeJet->SetBranchAddress("jtphi",&jtphi);
+  // treeJet->SetBranchAddress("nref",&nref);
+  treeJet->SetBranchAddress("calopt",&jtpt);
+  treeJet->SetBranchAddress("caloeta",&jteta);
+  treeJet->SetBranchAddress("calophi",&jtphi);
+  treeJet->SetBranchAddress("ncalo",&nref);
     
     
   treeHiEvt = (TTree*)fileTmp->Get("hiEvtAnalyzer/HiTree");
