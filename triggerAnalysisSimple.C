@@ -560,7 +560,7 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
       if(maxPt_num > 0){
 
 	num_60->Fill(maxPt_num,weight);
-	if(maxPt_num > 50){
+	if(maxPt_num > 1000){
 	  numEta_60->Fill(maxEta_num,weight);
 	  if(fabs(maxEta_num) < 5.0){
 	    numPhi_60->Fill(maxPhi_num,weight);
