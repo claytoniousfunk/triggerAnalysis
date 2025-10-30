@@ -93,7 +93,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 
 
-void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/jdlang/Run3_2025LowPUpp_ExpressForests/LowPUpp_SpecialHLTPhysics0_398683_PARTIAL/crab_LowPUpp_SpecialHLTPhysics0_398683_PARTIAL/251030_131553/0000/HiForest_2025LowPUpp_1.root", TString output = "out.root"){
+void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/hbossi/RECO2025/CRAB_UserFiles/crab_miniaod_251029_PhysicsSpecialZeroBias1_398683/251030_160851/0000/ppreco2miniaod_RAW2DIGI_L1Reco_RECO_PAT_1.root", TString output = "out.root"){
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
   std::cout << "inputFile   = " << input  << std::endl;
