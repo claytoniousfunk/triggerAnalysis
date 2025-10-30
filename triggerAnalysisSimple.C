@@ -291,8 +291,8 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
   // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet120Eta2p1_v", &triggerDecision_120);
 
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v", &triggerDecision_40);
-  //treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_SingleJet44_v", &triggerDecision_60);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v", &triggerDecision_60);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_SingleJet44_v", &triggerDecision_60);
+  //treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v", &triggerDecision_60);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v", &triggerDecision_80);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v", &triggerDecision_100);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v", &triggerDecision_120);
@@ -802,12 +802,12 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
   // leg->AddEntry(r_100,"HLT_AK4CaloJet100");
   // leg->AddEntry(r_120,"HLT_AK4CaloJet120");
 
-  leg->AddEntry(r_40,"HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v");
-  leg->AddEntry(r_60,"HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v");
-  //leg->AddEntry(r_60,"HLT_HIPuAK4CaloJet60Eta5p1_SingleJet44_v");
-  leg->AddEntry(r_80,"HLT_HIPuAK4CaloJet80Eta5p1_v");
-  leg->AddEntry(r_100,"HLT_HIPuAK4CaloJet100Eta5p1_v");
-  leg->AddEntry(r_120,"HLT_HIPuAK4CaloJet120Eta5p1_v");
+  // leg->AddEntry(r_40,"HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v");
+  //leg->AddEntry(r_60,"HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v");
+  leg->AddEntry(r_60,"HLT_HIPuAK4CaloJet60Eta5p1_SingleJet44_v");
+  // leg->AddEntry(r_80,"HLT_HIPuAK4CaloJet80Eta5p1_v");
+  // leg->AddEntry(r_100,"HLT_HIPuAK4CaloJet100Eta5p1_v");
+  // leg->AddEntry(r_120,"HLT_HIPuAK4CaloJet120Eta5p1_v");
 
   // leg->AddEntry(r_40,"HLT_AK4PFJetFwd40");
   // leg->AddEntry(r_60,"HLT_AK4PFJetFwd60");
@@ -822,12 +822,14 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
   // leg->AddEntry(r_120,"HLT_AK4CaloJetFwd120");
     
   //leg->SetBorderSize(0);
+  r_60->GetYaxis()->SetRangeUser(-1.6,1.6);
+  
   r_60->Draw();
   leg->Draw();
-  r_80->Draw("same");
-  r_100->Draw("same");
-  r_120->Draw("same");
-  r_40->Draw("same");
+  // r_80->Draw("same");
+  // r_100->Draw("same");
+  // r_120->Draw("same");
+  // r_40->Draw("same");
 
   TLatex *la = new TLatex();
   la->SetTextFont(42);
