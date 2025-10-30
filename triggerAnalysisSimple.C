@@ -822,7 +822,8 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
   // leg->AddEntry(r_120,"HLT_AK4CaloJetFwd120");
     
   //leg->SetBorderSize(0);
-  r_60->GetYaxis()->SetRangeUser(-1.6,1.6);
+  r_60->GetXaxis()->SetRangeUser(-1.6,1.6);
+  r_60->GetYaxis()->SetRangeUser(0,1.1);
   
   r_60->Draw();
   leg->Draw();
