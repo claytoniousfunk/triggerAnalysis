@@ -277,7 +277,7 @@ void triggerAnalysisPrompt_example(TString input = "HiForestMiniAOD_run374354.ro
     }
 
 
-    if(fabs(maxEta_denom)>1.5) continue; // skip event if the leading jet is outside eta range
+    if(fabs(maxEta_denom)>0.3) continue; // skip event if the leading jet is outside eta range
 
 
     if(maxPt_denom > 0) {
