@@ -193,6 +193,7 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
 
 
   treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
+  treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet24_v1", 1);
   treeTrig->SetBranchStatus("HLT_PFJet40_ZeroBiasCopy_v1", 1);  
   // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
   // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
@@ -293,11 +294,11 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v8", &triggerDecision_100);
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v8", &triggerDecision_120);
 
-  treeTrig->SetBranchAddress("HLT_PFJet40_ZeroBiasCopy_v1", &triggerDecision_40);
-  treeTrig->SetBranchAddress("HLT_PFJet40_ZeroBiasCopy_v1", &triggerDecision_60);
-  treeTrig->SetBranchAddress("HLT_PFJet40_ZeroBiasCopy_v1", &triggerDecision_80);
-  treeTrig->SetBranchAddress("HLT_PFJet40_ZeroBiasCopy_v1", &triggerDecision_100);
-  treeTrig->SetBranchAddress("HLT_PFJet40_ZeroBiasCopy_v1", &triggerDecision_120);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet24_v1", &triggerDecision_40);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet24_v1", &triggerDecision_60);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet24_v1", &triggerDecision_80);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet24_v1", &triggerDecision_100);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet24_v1", &triggerDecision_120);
 
     
     
