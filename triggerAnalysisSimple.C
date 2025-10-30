@@ -739,7 +739,7 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
   r_100->SetMarkerColor(kMagenta-9);
   r_120->SetMarkerColor(kPink+6);
 
-  double line_width = 1.6;
+  double line_width = 1.8;
   r_40->SetLineWidth(line_width);
   r_60->SetLineWidth(line_width);
   r_80->SetLineWidth(line_width);
@@ -774,9 +774,9 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
   r_60->GetXaxis()->SetTitle("leading Calo jet  #font[52]{p}_{T} [GeV]");
   r_60->GetYaxis()->SetTitle("Trigger efficiency");
 
-  TLegend *leg = new TLegend(0.55,0.3,0.88,0.5);
+  TLegend *leg = new TLegend(0.45,0.3,0.88,0.5);
   leg->SetBorderSize(0);
-  leg->SetTextSize(0.035);
+  leg->SetTextSize(0.030);
     
   // leg->AddEntry(r_40,"HLT_AK4PFJet40");
   // leg->AddEntry(r_60,"HLT_AK4PFJet60");
@@ -823,7 +823,7 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
 
   la->DrawLatexNDC(0.6,0.75,"PYTHIA+HYDJET");
   la->DrawLatexNDC(0.6,0.69,"2025 Run 3 MC");
-  la->DrawLatexNDC(0.6,0.63,Form("%1.1f < |#eta^{jet}| < %1.1f",cut_eta_min,cut_eta_max));
+  la->DrawLatexNDC(0.6,0.63,Form("%1.1f < |#it{#eta}^{jet}| < %1.1f",cut_eta_min,cut_eta_max));
   //la->DrawLatexNDC(0.6,0.63,"3.2 < |#eta^{jet}| < 4.7");
 
   c1->SaveAs("figure.pdf");
