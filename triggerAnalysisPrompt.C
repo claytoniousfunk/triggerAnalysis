@@ -794,19 +794,20 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   r_80->GetXaxis()->SetTitle("leading jet #font[52]{p}_{T} [GeV]");
   r_80->GetYaxis()->SetTitle("Trigger efficiency");
   TLegend *leg = new TLegend(0.55,0.3,0.88,0.5);
-  //leg->AddEntry(r_40,"HLT_PFJet40_L1Jet24_v1");
-  //leg->AddEntry(r_60,"HLT_PFJet60_v37");
+  leg->AddEntry(r_40,"HLT_PFJet40_L1Jet24_v1");
+  leg->AddEntry(r_60,"HLT_PFJet60_v37");
   //leg->AddEntry(r_70,"");
   leg->AddEntry(r_80,"HLT_PFJet80_L1SingleJet60_v1");
-  //leg->AddEntry(r_100,"HLT_PFJet110_v16");
-  //leg->AddEntry(r_120,"HLT_PFJet140_v35");
+  leg->AddEntry(r_100,"HLT_PFJet110_v16");
+  leg->AddEntry(r_120,"HLT_PFJet140_v35");
   //leg->SetBorderSize(0);
   r_80->Draw();
   leg->Draw();
-  // r_60->Draw("same");
-  // r_80->Draw("same");
-  //r_100->Draw("same");
-  // r_40->Draw("same");
+  r_40->Draw("same");
+  r_60->Draw("same");
+  //r_80->Draw("same");
+  r_100->Draw("same");
+  r_120->Draw("same");
 
   TLatex *la = new TLatex();
   la->SetTextFont(42);
