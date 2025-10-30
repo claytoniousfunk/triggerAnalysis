@@ -435,8 +435,10 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
 
 	}
 
+	double cut_eta = 0.1;
+	
         //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
-        if(fabs(maxEta_denom)>0.1) continue; // skip event if the leading jet is outside eta range
+        if(fabs(maxEta_denom) > cut_eta) continue; // skip event if the leading jet is outside eta range
 
 	    if(maxPt_denom > 0) {
             
@@ -807,7 +809,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
 
     la->DrawLatexNDC(0.6,0.75,"PYTHIA+HYDJET");
     la->DrawLatexNDC(0.6,0.69,"2025 Run 3 MC");
-    la->DrawLatexNDC(0.6,0.63,"|#eta^{jet}| < 1.6");
+    la->DrawLatexNDC(0.6,0.63,Form("|#eta^{jet}| < %1.1f",cut_eta));
     //la->DrawLatexNDC(0.6,0.63,"3.2 < |#eta^{jet}| < 4.7");
 
     c1->SaveAs("figure.pdf");
