@@ -387,7 +387,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
     }
 
 
-
+    double cut_eta = 0.1;
 
     // loop through reco objects
     for (Long64_t j_entry = 0; j_entry < entriesTmp; ++j_entry){
@@ -435,7 +435,7 @@ void triggerAnalysisSimple(std::string triggerFile = "/eos/cms/store/group/phys_
 
 	}
 
-	double cut_eta = 0.1;
+	
 	
         //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
         if(fabs(maxEta_denom) > cut_eta) continue; // skip event if the leading jet is outside eta range
