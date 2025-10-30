@@ -457,7 +457,7 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
     }
 
     //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
-    if(fabs(maxEta_denom)>0.3) continue; // skip event if the leading jet is outside eta range
+    if(fabs(maxEta_denom)>1.5) continue; // skip event if the leading jet is outside eta range
 
 	
 	
@@ -787,27 +787,26 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   p1->SetBottomMargin(0.14);
   p1->Draw();
   p1->cd();
-  r_60->SetTitle("");
-  r_60->SetStats(0);
-  r_60->GetXaxis()->SetTitleSize(0.05);
-  r_60->GetYaxis()->SetTitleSize(0.05);
-  r_60->GetXaxis()->SetTitle("leading jet #font[52]{p}_{T} [GeV]");
-  r_60->GetYaxis()->SetTitle("Trigger efficiency");
+  r_120->SetTitle("");
+  r_120->SetStats(0);
+  r_120->GetXaxis()->SetTitleSize(0.05);
+  r_120->GetYaxis()->SetTitleSize(0.05);
+  r_120->GetXaxis()->SetTitle("leading jet #font[52]{p}_{T} [GeV]");
+  r_120->GetYaxis()->SetTitle("Trigger efficiency");
   TLegend *leg = new TLegend(0.55,0.3,0.88,0.5);
-  leg->AddEntry(r_40,"HLT_PFJet40_L1Jet24_v1");
-  leg->AddEntry(r_60,"HLT_PFJet60_v37");
+  //leg->AddEntry(r_40,"HLT_PFJet40_L1Jet24_v1");
+  //leg->AddEntry(r_60,"HLT_PFJet60_v37");
   //leg->AddEntry(r_70,"");
-  leg->AddEntry(r_80,"HLT_PFJet80_L1SingleJet60_v1");
+  //leg->AddEntry(r_80,"HLT_PFJet80_L1SingleJet60_v1");
   leg->AddEntry(r_100,"HLT_PFJet110_v16");
   leg->AddEntry(r_120,"HLT_PFJet140_v35");
   //leg->SetBorderSize(0);
-  r_60->Draw();
+  r_120->Draw();
   leg->Draw();
-  r_70->Draw("same");
-  r_80->Draw("same");
+  // r_60->Draw("same");
+  // r_80->Draw("same");
   r_100->Draw("same");
-  r_120->Draw("same");
-  r_40->Draw("same");
+  // r_40->Draw("same");
 
   TLatex *la = new TLatex();
   la->SetTextFont(42);
@@ -816,7 +815,7 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   la->DrawLatexNDC(0.22,0.92,"2025 PPRef #sqrt{#it{s}} = 5.36 TeV");
   la->DrawLatexNDC(0.72,0.92,"Run 398683");
   //la->DrawLatexNDC(0.6,0.69,"2025 Run 3 MC");
-  la->DrawLatexNDC(0.6,0.69,"|#eta^{jet}| < 0.3");
+  la->DrawLatexNDC(0.6,0.69,"|#eta^{jet}| < 1.5");
 
  
 
