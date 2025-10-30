@@ -93,7 +93,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 
 
-void triggerAnalysisPrompt(TString input = "/home/clayton/Analysis/code/triggerAnalysis/rootFiles/prompt/374354/HiForestMiniAOD_120.root", TString output = "out.root"){
+void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/jdlang/Run3_2025LowPUpp_ExpressForests/LowPUpp_SpecialHLTPhysics0_398683_PARTIAL/crab_LowPUpp_SpecialHLTPhysics0_398683_PARTIAL/251030_131553/HiForest_2025LowPUpp_1.root", TString output = "out.root"){
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
   std::cout << "inputFile   = " << input  << std::endl;
@@ -192,6 +192,15 @@ void triggerAnalysisPrompt(TString input = "/home/clayton/Analysis/code/triggerA
   treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet120Fwd_v8", 1);
 
 
+  treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
+  // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
+  // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
+  // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
+  // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
+
+  
+
+
 
 
 
@@ -271,17 +280,23 @@ void triggerAnalysisPrompt(TString input = "/home/clayton/Analysis/code/triggerA
   // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet100Eta2p1_v", &triggerDecision_100);
   // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet120Eta2p1_v", &triggerDecision_120);
 
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_v8", &triggerDecision_40);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_v8", &triggerDecision_60);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v8", &triggerDecision_80);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v8", &triggerDecision_100);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v8", &triggerDecision_120);
+  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_v8", &triggerDecision_40);
+  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_v8", &triggerDecision_60);
+  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v8", &triggerDecision_80);
+  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v8", &triggerDecision_100);
+  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v8", &triggerDecision_120);
 
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v8", &triggerDecision_40);
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v8", &triggerDecision_60);
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Fwd_v8", &triggerDecision_80);
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v8", &triggerDecision_100);
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v8", &triggerDecision_120);
+
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet20_v1", &triggerDecision_40);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet20_v1", &triggerDecision_60);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet20_v1", &triggerDecision_80);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet20_v1", &triggerDecision_100);
+  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet20_v1", &triggerDecision_120);
 
     
     
@@ -301,7 +316,7 @@ void triggerAnalysisPrompt(TString input = "/home/clayton/Analysis/code/triggerA
   fileTmp->cd();
 
 
-  std::string treePath = "ggHiNtuplizer/EventTree";
+  std::string treePath = "hiEvtAnalyzer/HiTree";
 
   // read one tree only to get the number of entries
   treeggHiNtuplizer = (TTree*)fileTmp->Get(treePath.c_str());
@@ -314,8 +329,8 @@ void triggerAnalysisPrompt(TString input = "/home/clayton/Analysis/code/triggerA
     
   std::map<unsigned long long, int> runLumiEvtToEntryMap;
     
-  //treeJet = (TTree*)fileTmp->Get("ak4PFJetAnalyzer/t");
-  treeJet = (TTree*)fileTmp->Get("akCs4PFJetAnalyzer/t");
+  treeJet = (TTree*)fileTmp->Get("ak0PFJetAnalyzer/t");
+  //treeJet = (TTree*)fileTmp->Get("akCs4PFJetAnalyzer/t");
   treeJet->SetBranchStatus("*",0);     // disable all branches
   treeJet->SetBranchStatus("jtpt",1);   // enable event information
   treeJet->SetBranchStatus("jteta",1);
