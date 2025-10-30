@@ -457,7 +457,7 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
 	  denomPhi_40->Fill(maxPhi_denom,weight);
 	}
       }
-      if(maxPt_denom > 50){
+      if(maxPt_denom > 100){
 	denomEta_60->Fill(maxEta_denom,weight);
 	if(fabs(maxEta_denom) < 5.0){
 	  denomPhi_60->Fill(maxPhi_denom,weight);
