@@ -93,7 +93,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 
 
-void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/hbossi/RECO2025/CRAB_UserFiles/crab_miniaod_251029_PhysicsSpecialZeroBias1_398683/251030_160851/0000/ppreco2miniaod_RAW2DIGI_L1Reco_RECO_PAT_1.root", TString output = "out.root"){
+void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/jdlang/Run3_2025LowPUpp_ExpressForests/LowPUpp_SpecialHLTPhysics0_398683_PARTIAL/crab_LowPUpp_SpecialHLTPhysics0_398683_PARTIAL/251030_131553/0000/HiForest_2025LowPUpp_1.root", TString output = "out.root"){
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
   std::cout << "inputFile   = " << input  << std::endl;
@@ -457,7 +457,7 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
     }
 
     //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
-    if(fabs(maxEta_denom)>1.5) continue; // skip event if the leading jet is outside eta range
+    if(fabs(maxEta_denom)>0.3) continue; // skip event if the leading jet is outside eta range
 
 	
 	
@@ -816,7 +816,7 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   la->DrawLatexNDC(0.22,0.92,"2025 PPRef #sqrt{#it{s}} = 5.36 TeV");
   la->DrawLatexNDC(0.72,0.92,"Run 398683");
   //la->DrawLatexNDC(0.6,0.69,"2025 Run 3 MC");
-  la->DrawLatexNDC(0.6,0.69,"|#eta^{jet}| < 1.5");
+  la->DrawLatexNDC(0.6,0.69,"|#eta^{jet}| < 0.3");
 
  
 
