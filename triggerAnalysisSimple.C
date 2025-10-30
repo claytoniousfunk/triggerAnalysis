@@ -774,9 +774,9 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
   r_60->GetXaxis()->SetTitle("leading Calo jet  #font[52]{p}_{T} [GeV]");
   r_60->GetYaxis()->SetTitle("Trigger efficiency");
 
-  TLegend *leg = new TLegend(0.45,0.3,0.88,0.5);
+  TLegend *leg = new TLegend(0.4,0.3,0.88,0.5);
   leg->SetBorderSize(0);
-  leg->SetTextSize(0.030);
+  leg->SetTextSize(0.027);
     
   // leg->AddEntry(r_40,"HLT_AK4PFJet40");
   // leg->AddEntry(r_60,"HLT_AK4PFJet60");
