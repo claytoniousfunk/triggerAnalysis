@@ -721,7 +721,7 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
 
   }
 
-  r_40->Divide(numEta_4,denomEta_40,1,1,"B");
+  r_40->Divide(numEta_40,denomEta_40,1,1,"B");
   r_60->Divide(numEta_60,denomEta_60,1,1,"B");
   r_80->Divide(numEta_80,denomEta_80,1,1,"B");
   r_100->Divide(numEta_100,denomEta_100,1,1,"B");
