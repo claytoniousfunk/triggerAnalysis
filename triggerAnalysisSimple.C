@@ -29,32 +29,32 @@ TH1D *denomPhi_120 = new TH1D("denomPhi_120","denomPhi_120",NPhiBins,phiMin,phiM
 TH1D *num_40 = new TH1D("num_40","num_40",NPtBins,ptMin,ptMax);
 TH1D *numEta_40 = new TH1D("numEta_40","numEta_40",NEtaBins,etaMin,etaMax);
 TH1D *numPhi_40 = new TH1D("numPhi_40","numPhi_40",NPhiBins,phiMin,phiMax);
-TH1D *r_40 = new TH1D("r_40","r_40",NPtBins,ptMin,ptMax);
+//TH1D *r_40 = new TH1D("r_40","r_40",NPtBins,ptMin,ptMax);
+TH1D *r_40 = new TH1D("r_40","r_40",NEtaBins,etaMin,etaMax);
 
 TH1D *num_60 = new TH1D("num_60","num_60",NPtBins,ptMin,ptMax);
 TH1D *numEta_60 = new TH1D("numEta_60","numEta_60",NEtaBins,etaMin,etaMax);
 TH1D *numPhi_60 = new TH1D("numPhi_60","numPhi_60",NPhiBins,phiMin,phiMax);
-TH1D *r_60 = new TH1D("r_60","r_60",NPtBins,ptMin,ptMax);
-
-TH1D *num_70 = new TH1D("num_70","num_70",NPtBins,ptMin,ptMax);
-TH1D *numEta_70 = new TH1D("numEta_70","numEta_70",NEtaBins,etaMin,etaMax);
-TH1D *numPhi_70 = new TH1D("numPhi_70","numPhi_70",NPhiBins,phiMin,phiMax);
-TH1D *r_70 = new TH1D("r_70","r_70",NPtBins,ptMin,ptMax);
+//TH1D *r_60 = new TH1D("r_60","r_60",NPtBins,ptMin,ptMax);
+TH1D *r_60 = new TH1D("r_60","r_60",NEtaBins,etaMin,etaMax);
 
 TH1D *num_80 = new TH1D("num_80","num_80",NPtBins,ptMin,ptMax);
 TH1D *numEta_80 = new TH1D("numEta_80","numEta_80",NEtaBins,etaMin,etaMax);
 TH1D *numPhi_80 = new TH1D("numPhi_80","numPhi_80",NPhiBins,phiMin,phiMax);
-TH1D *r_80 = new TH1D("r_80","r_80",NPtBins,ptMin,ptMax);
+//TH1D *r_80 = new TH1D("r_80","r_80",NPtBins,ptMin,ptMax);
+TH1D *r_80 = new TH1D("r_80","r_80",NEtaBins,etaMin,etaMax);
 
 TH1D *num_100 = new TH1D("num_100","num_100",NPtBins,ptMin,ptMax);
 TH1D *numEta_100 = new TH1D("numEta_100","numEta_100",NEtaBins,etaMin,etaMax);
 TH1D *numPhi_100 = new TH1D("numPhi_100","numPhi_100",NPhiBins,phiMin,phiMax);
-TH1D *r_100 = new TH1D("r_100","r_100",NPtBins,ptMin,ptMax);
+//TH1D *r_100 = new TH1D("r_100","r_100",NPtBins,ptMin,ptMax);
+TH1D *r_100 = new TH1D("r_100","r_100",NEtaBins,etaMin,etaMax);
 
 TH1D *num_120 = new TH1D("num_120","num_120",NPtBins,ptMin,ptMax);
 TH1D *numEta_120 = new TH1D("numEta_120","numEta_120",NEtaBins,etaMin,etaMax);
 TH1D *numPhi_120 = new TH1D("numPhi_120","numPhi_120",NPhiBins,phiMin,phiMax);
-TH1D *r_120 = new TH1D("r_120","r_120",NPtBins,ptMin,ptMax);
+//TH1D *r_120 = new TH1D("r_120","r_120",NPtBins,ptMin,ptMax);
+TH1D *r_120 = new TH1D("r_120","r_120",NEtaBins,etaMin,etaMax);
 
 
 
