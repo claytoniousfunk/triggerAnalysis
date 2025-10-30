@@ -747,26 +747,38 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   r_100->Divide(num_100,denom,1,1,"B");
   r_120->Divide(num_120,denom,1,1,"B");
 
-  r_40->SetLineColor(kGray);
-  r_60->SetLineColor(kRed);
-  r_70->SetLineColor(kBlack);
-  r_80->SetLineColor(kBlue);
-  r_100->SetLineColor(kGreen);
-  r_120->SetLineColor(kMagenta);
 
-  r_40->SetMarkerColor(kGray);
-  r_60->SetMarkerColor(kRed);
-  r_70->SetMarkerColor(kBlack);
-  r_80->SetMarkerColor(kBlue);
-  r_100->SetMarkerColor(kGreen);
-  r_120->SetMarkerColor(kMagenta);
+  r_40->SetLineColor(kRed-4);
+  r_60->SetLineColor(kBlue-4);
+  r_80->SetLineColor(kGreen+2);
+  r_100->SetLineColor(kMagenta-9);
+  r_120->SetLineColor(kPink+6);
 
-  r_40->SetMarkerStyle(23);
-  r_60->SetMarkerStyle(24);
-  r_70->SetMarkerStyle(33);
-  r_80->SetMarkerStyle(25);
-  r_100->SetMarkerStyle(26);
-  r_120->SetMarkerStyle(32);
+  r_40->SetMarkerColor(kRed-4);
+  r_60->SetMarkerColor(kBlue-4);
+  r_80->SetMarkerColor(kGreen+2);
+  r_100->SetMarkerColor(kMagenta-9);
+  r_120->SetMarkerColor(kPink+6);
+
+  double line_width = 1.8;
+  r_40->SetLineWidth(line_width);
+  r_60->SetLineWidth(line_width);
+  r_80->SetLineWidth(line_width);
+  r_100->SetLineWidth(line_width);
+  r_120->SetLineWidth(line_width);
+
+  double marker_size = 1.6;
+  r_40->SetMarkerSize(marker_size);
+  r_60->SetMarkerSize(marker_size);
+  r_80->SetMarkerSize(marker_size);
+  r_100->SetMarkerSize(marker_size);
+  r_120->SetMarkerSize(marker_size);
+    
+  r_40->SetMarkerStyle(20);
+  r_60->SetMarkerStyle(21);
+  r_80->SetMarkerStyle(22);
+  r_100->SetMarkerStyle(23);
+  r_120->SetMarkerStyle(34);
 
   TCanvas *c1 = new TCanvas("c1","c1",700,600);
   c1->cd();
@@ -801,7 +813,8 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
   la->SetTextFont(42);
   la->SetTextSize(0.03);
 
-  la->DrawLatexNDC(0.6,0.75,"2025 PPRef #sqrt{#it{s}} = 5.36 TeV");
+  la->DrawLatexNDC(0.22,0.92,"2025 PPRef #sqrt{#it{s}} = 5.36 TeV");
+  la->DrawLatexNDC(0.72,0.92,"Run 398683");
   //la->DrawLatexNDC(0.6,0.69,"2025 Run 3 MC");
   la->DrawLatexNDC(0.6,0.69,"|#eta^{jet}| < 1.5");
 
