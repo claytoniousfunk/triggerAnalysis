@@ -441,7 +441,7 @@ void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/
     }
 
     //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
-    if(fabs(maxEta_denom)>3.0) continue; // skip event if the leading jet is outside eta range
+    if(fabs(maxEta_denom)>1.5) continue; // skip event if the leading jet is outside eta range
 
 	
 	
