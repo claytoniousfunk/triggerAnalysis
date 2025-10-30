@@ -721,11 +721,17 @@ void triggerAnalysisSimple(double cut_eta_min = 0.0,
 
   }
 
-  r_40->Divide(num_40,denom,1,1,"B");
-  r_60->Divide(num_60,denom,1,1,"B");
-  r_80->Divide(num_80,denom,1,1,"B");
-  r_100->Divide(num_100,denom,1,1,"B");
-  r_120->Divide(num_120,denom,1,1,"B");
+  r_40->Divide(numEta_4,denomEta_40,1,1,"B");
+  r_60->Divide(numEta_60,denomEta_60,1,1,"B");
+  r_80->Divide(numEta_80,denomEta_80,1,1,"B");
+  r_100->Divide(numEta_100,denomEta_100,1,1,"B");
+  r_120->Divide(numEta_120,denomEta_120,1,1,"B");
+
+  // r_40->Divide(num_40,denom,1,1,"B");
+  // r_60->Divide(num_60,denom,1,1,"B");
+  // r_80->Divide(num_80,denom,1,1,"B");
+  // r_100->Divide(num_100,denom,1,1,"B");
+  // r_120->Divide(num_120,denom,1,1,"B");
 
   r_40->SetLineColor(kRed-4);
   r_60->SetLineColor(kBlue-4);
