@@ -93,7 +93,30 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 
 
-void triggerAnalysisPrompt(TString input = "/eos/cms/store/group/phys_heavyions/jdlang/Run3_2025LowPUpp_ExpressForests/LowPUpp_SpecialHLTPhysics0_398683_PARTIAL/crab_LowPUpp_SpecialHLTPhysics0_398683_PARTIAL/251030_131553/0000/HiForest_2025LowPUpp_10.root", TString output = "out.root"){
+void triggerAnalysisPrompt(int file_i = 1){
+
+  std::ifstream infile("/fileNames/fileNames.txt");
+  if(!infile.is_open()){
+    std::cerr << "Error: Could not open fileNames.txt" << std::endl;
+    return 1;
+  }
+
+  std::vector<TString> fileList;
+  std::string line;
+  while(std::getLine(infile,line)){
+    if(line.empty()) continue;
+    fileList.push_back(TString(line));
+  }
+  infile.close();
+
+  TString input = fileList[file_i];
+  std::cout << "Number of files: " << fileList.size() << std::endl;
+  std::cout << "Processing file " << file_i << std::endl;
+
+  // TString input = Form("/eos/cms/store/group/phys_heavyions/jdlang/Run3_2025LowPUpp_ExpressForests/LowPUpp_SpecialZeroBias1_398683_PARTIAL/crab_LowPUpp_SpecialZeroBias1_398683_PARTIAL/251030_182446/0000/HiForest_2025LowPUpp_%i.root",file_i);
+  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_SpecialZeroBias1_2025-11-01/out_%i.root",file_i);
+
+  
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
   std::cout << "inputFile   = " << input  << std::endl;
