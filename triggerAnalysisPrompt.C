@@ -103,7 +103,7 @@ void triggerAnalysisPrompt(int file_i = 1){
 
   std::vector<TString> fileList;
   std::string line;
-  while(std::getLine(infile,line)){
+  while(std::getline(infile,line)){
     if(line.empty()) continue;
     fileList.push_back(TString(line));
   }
