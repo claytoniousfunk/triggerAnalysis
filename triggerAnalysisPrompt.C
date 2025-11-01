@@ -98,7 +98,7 @@ void triggerAnalysisPrompt(int file_i = 1){
   std::ifstream infile("/fileNames/fileNames_SpecialZeroBias1_398683.txt.txt");
   if(!infile.is_open()){
     std::cerr << "Error: Could not open fileNames.txt" << std::endl;
-    return 1;
+    return;
   }
 
   std::vector<TString> fileList;
