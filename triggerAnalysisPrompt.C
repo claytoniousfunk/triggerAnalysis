@@ -161,7 +161,7 @@ void triggerAnalysisPrompt(int file_i = 1){
 
   for(int i = 0; i < triggerList.size(); i++){
     treeTrig->SetBranchStatus(triggerList.at(i).c_str(),1);
-    //triggerDecisions.push_back(0);
+    triggerDecisions.push_back(0);
     treeTrig->SetBranchAddress(triggerList.at(i).c_str(),&triggerDecisions.at(i));
   }
 
@@ -473,7 +473,7 @@ void triggerAnalysisPrompt(int file_i = 1){
     triggerDecision_100 = triggerDecisions.at(3);
     triggerDecision_120 = triggerDecisions.at(4);
 
-    cout << "triggerDecision_40 = " << triggerDecisions.at(0) << endl;
+    if(triggerDecision_40==1) cout << "triggerDecision_40 = " << triggerDecisions.at(0) << endl;
 
 
     if(triggerDecision_40==1) {// only fill the numerator if the trigger is on.
