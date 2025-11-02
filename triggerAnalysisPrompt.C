@@ -156,12 +156,14 @@ void triggerAnalysisPrompt(int file_i = 1){
   triggerList.push_back("HLT_PFJet110_v16");
   triggerList.push_back("HLT_PFJet140_v35");
 
-
-  std::vector<Int_t> triggerDecisions(triggerList.size(),0);
+  const int N_triggers = 7;
+  Int_t triggerDecisions[N_triggers];
+  
+  //std::vector<Int_t> triggerDecisions(triggerList.size(),0);
 
   for(int i = 0; i < triggerList.size(); i++){
     treeTrig->SetBranchStatus(triggerList.at(i).c_str(),1);
-    treeTrig->SetBranchAddress(triggerList.at(i).c_str(),&triggerDecisions.at(i));
+    treeTrig->SetBranchAddress(triggerList.at(i).c_str(),&triggerDecisions[i]);
   }
 
   
@@ -188,81 +190,6 @@ void triggerAnalysisPrompt(int file_i = 1){
   treeTrig->SetBranchAddress("LumiBlock", &hlt_lumi);
   treeTrig->SetBranchAddress("Run", &hlt_run);
     
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd40_v",&triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd60_v",&triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd80_v",&triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd100_v",&triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd120_v",&triggerDecision_120);
-
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd40_noL1Seed_v",&triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd60_noL1Seed_v",&triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd80_noL1Seed_v",&triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd100_noL1Seed_v",&triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_AK4PFJetFwd120_noL1Seed_v",&triggerDecision_120);
-    
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet40_v",&triggerDecision_40);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet60_v",&triggerDecision_60);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet70_v",&triggerDecision_70);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet80_v",&triggerDecision_80);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet100_v",&triggerDecision_100);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet120_v",&triggerDecision_120);
-     
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet40_noL1Seed_v",&triggerDecision_40);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet60_noL1Seed_v",&triggerDecision_60);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet70_noL1Seed_v",&triggerDecision_70);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet80_noL1Seed_v",&triggerDecision_80);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet100_noL1Seed_v",&triggerDecision_100);
-  //treeTrig->SetBranchAddress("HLT_AK4PFJet120_noL1Seed_v",&triggerDecision_120);
-    
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet40_v",&triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet60_v",&triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet70_v",&triggerDecision_70);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet80_v",&triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet100_v",&triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet120_v",&triggerDecision_120);
-    
-  //treeTrig->SetBranchAddress("HLT_AK4CaloJet40_noL1Seed_v",&triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet60_noL1Seed_v",&triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet70_noL1Seed_v",&triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet100_noL1Seed_v",&triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJet120_noL1Seed_v",&triggerDecision_120);
-
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd40_v",&triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd60_v",&triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd70_v",&triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd100_v",&triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd120_v",&triggerDecision_120);
-    
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd40_noL1Seed_v",&triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd60_noL1Seed_v",&triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd70_noL1Seed_v",&triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd100_noL1Seed_v",&triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_AK4CaloJetFwd120_noL1Seed_v",&triggerDecision_120);
-
-  // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet40Eta2p1_v", &triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet60Eta2p1_v", &triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet80Eta2p1_v", &triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet100Eta2p1_v", &triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_HICsAK4PFJet120Eta2p1_v", &triggerDecision_120);
-
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_v8", &triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_v8", &triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v8", &triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v8", &triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v8", &triggerDecision_120);
-
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v8", &triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v8", &triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Fwd_v8", &triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v8", &triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v8", &triggerDecision_120);
-
-  // treeTrig->SetBranchAddress("HLT_PFJet40_ZeroBiasCopy_v1", &triggerDecision_40);
-  // treeTrig->SetBranchAddress("HLT_PFJet60_v37", &triggerDecision_60);
-  // treeTrig->SetBranchAddress("HLT_PFJet80_L1SingleJet60_v1", &triggerDecision_80);
-  // treeTrig->SetBranchAddress("HLT_PFJet110_v16", &triggerDecision_100);
-  // treeTrig->SetBranchAddress("HLT_PFJet140_v35", &triggerDecision_120);
-
     
     
 
@@ -459,10 +386,6 @@ void triggerAnalysisPrompt(int file_i = 1){
 	    
       //std::cout << "maxPt = " << maxPt_denom <<std::endl;
     }
-
-
-
-
 
     treeTrig->GetEntry(i_entry); // get trigger decision from HLT emulation
 
