@@ -389,11 +389,11 @@ void triggerAnalysisPrompt(int file_i = 1){
 
     treeTrig->GetEntry(i_entry); // get trigger decision from HLT emulation
 
-    triggerDecision_40 = triggerDecisions.at(0);
-    triggerDecision_60 = triggerDecisions.at(1);
-    triggerDecision_80 = triggerDecisions.at(2);
-    triggerDecision_100 = triggerDecisions.at(3);
-    triggerDecision_120 = triggerDecisions.at(4);
+    triggerDecision_40 = triggerDecisions[0];
+    triggerDecision_60 = triggerDecisions[1];
+    triggerDecision_80 = triggerDecisions[2];
+    triggerDecision_100 = triggerDecisions[3];
+    triggerDecision_120 = triggerDecisions[4];
 
     if(triggerDecision_100==1) cout << "triggerDecision_100 = " << triggerDecisions.at(3) << endl;
 
