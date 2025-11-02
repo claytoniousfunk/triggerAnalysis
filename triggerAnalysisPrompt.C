@@ -2,7 +2,7 @@ using namespace std;
 
 Float_t ptMin = 0.;
 Float_t ptMax = 300.;
-Int_t NPtBins = 30;
+Int_t NPtBins = 300;
 
 Float_t etaMin = -5.0;
 Float_t etaMax = 5.0;
