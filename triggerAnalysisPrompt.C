@@ -113,9 +113,8 @@ void triggerAnalysisPrompt(int file_i = 1){
   std::cout << "Number of files: " << fileList.size() << std::endl;
   std::cout << "Processing file " << file_i << std::endl;
 
-  // TString input = Form("/eos/cms/store/group/phys_heavyions/jdlang/Run3_2025LowPUpp_ExpressForests/LowPUpp_SpecialZeroBias1_398683_PARTIAL/crab_LowPUpp_SpecialZeroBias1_398683_PARTIAL/251030_182446/0000/HiForest_2025LowPUpp_%i.root",file_i);
-  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_SpecialZeroBias1_2025-11-01/out_%i.root",file_i);
 
+  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_SpecialZeroBias1_2025-11-01/out_%i.root",file_i);
   
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
@@ -147,99 +146,29 @@ void triggerAnalysisPrompt(int file_i = 1){
   treeTrig->SetBranchStatus("Event", 1);
   treeTrig->SetBranchStatus("LumiBlock", 1);
   treeTrig->SetBranchStatus("Run", 1);
-   
-  treeTrig->SetBranchStatus("HLT_AK4PFJet40_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJet60_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJet80_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJet100_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJet120_v", 1);
-    
-  treeTrig->SetBranchStatus("HLT_AK4PFJet40_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJet60_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJet80_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJet100_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJet120_noL1Seed_v", 1);
 
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd40_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd60_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd80_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd100_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd120_v", 1);
-    
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd40_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd60_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd80_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd100_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4PFJetFwd120_noL1Seed_v", 1);
-    
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet40_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet60_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet70_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet100_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet120_v", 1);
-    
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet40_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet60_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet70_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet100_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJet120_noL1Seed_v", 1);
-
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd40_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd60_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd70_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd100_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd120_v", 1);
-    
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd40_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd60_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd70_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd100_noL1Seed_v", 1);
-  treeTrig->SetBranchStatus("HLT_AK4CaloJetFwd120_noL1Seed_v", 1);
-
-  treeTrig->SetBranchStatus("HLT_HICsAK4PFJet40Eta2p1_v1", 1);
-  treeTrig->SetBranchStatus("HLT_HICsAK4PFJet60Eta2p1_v1", 1);
-  treeTrig->SetBranchStatus("HLT_HICsAK4PFJet80Eta2p1_v1", 1);
-  treeTrig->SetBranchStatus("HLT_HICsAK4PFJet100Eta2p1_v1", 1);
-  treeTrig->SetBranchStatus("HLT_HICsAK4PFJet120Eta2p1_v1", 1);
-
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet40Eta5p1_v8", 1);
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet60Eta5p1_v8", 1);
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet80Eta5p1_v8", 1);
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet100Eta5p1_v8", 1);
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet120Eta5p1_v8", 1);
-    
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet40Fwd_v8", 1);
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet60Fwd_v8", 1);
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet80Fwd_v8", 1);
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet100Fwd_v8", 1);
-  treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet120Fwd_v8", 1);
+  std::vector<std::string> triggerList;
+  triggerList.push_back("HLT_PFJet40_ZeroBiasCopy_v1");
+  triggerList.push_back("HLT_PFJet40_L1Jet20_v1");
+  triggerList.push_back("HLT_PFJet40_L1Jet24_v1");
+  triggerList.push_back("HLT_PFJet60_v37");
+  triggerList.push_back("HLT_PFJet80_L1SingleJet60_v1");
+  triggerList.push_back("HLT_PFJet110_v16");
+  triggerList.push_back("HLT_PFJet140_v35");
 
 
-  treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
-  treeTrig->SetBranchStatus("HLT_PFJet40_ZeroBiasCopy_v1", 1);
-  
-  treeTrig->SetBranchStatus("HLT_AK8PFJet140_v31", 1);
-  
-  treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet24_v1", 1);
-  treeTrig->SetBranchStatus("HLT_PFJet60_v37", 1);
-  treeTrig->SetBranchStatus("HLT_PFJet80_L1SingleJet60_v1", 1);
-  treeTrig->SetBranchStatus("HLT_PFJet110_v16", 1);
-  treeTrig->SetBranchStatus("HLT_PFJet140_v35", 1);
-  // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
-  // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
-  // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
-  // treeTrig->SetBranchStatus("HLT_PFJet40_L1Jet20_v1", 1);
+  std::vector<Int_t> triggerDecisions;
+
+  for(int i = 0; i < triggerList.size(); i++){
+    treeTrig->SetBranchStatus(triggerList.at(i).c_str(),1);
+    triggerDecisions.push_back(0);
+    treeTrig->SetBranchAddress(triggerList.at(i).c_str(),&triggerDecisions.at(i));
+  }
 
   
-
-
-
-
-
-
-
     
-    
+  
+  
   //Int_t hlt_event;
   ULong64_t       hlt_event;
   Int_t           hlt_lumi;
@@ -250,6 +179,15 @@ void triggerAnalysisPrompt(int file_i = 1){
   Int_t          triggerDecision_80;
   Int_t          triggerDecision_100;
   Int_t          triggerDecision_120;
+
+
+  triggerDecision_40 = triggerDecisions.at(0);
+  triggerDecision_60 = triggerDecisions.at(1);
+  triggerDecision_80 = triggerDecisions.at(2);
+  triggerDecision_100 = triggerDecisions.at(3);
+  triggerDecision_120 = triggerDecisions.at(4);
+
+  
   std::cout << "Setting Event, lumi, and run branchAdresses...";
   treeTrig->SetBranchAddress("Event", &hlt_event);
   treeTrig->SetBranchAddress("LumiBlock", &hlt_lumi);
@@ -324,11 +262,11 @@ void triggerAnalysisPrompt(int file_i = 1){
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v8", &triggerDecision_100);
   // treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v8", &triggerDecision_120);
 
-  treeTrig->SetBranchAddress("HLT_PFJet40_L1Jet24_v1", &triggerDecision_40);
-  treeTrig->SetBranchAddress("HLT_PFJet60_v37", &triggerDecision_60);
-  treeTrig->SetBranchAddress("HLT_PFJet80_L1SingleJet60_v1", &triggerDecision_80);
-  treeTrig->SetBranchAddress("HLT_PFJet110_v16", &triggerDecision_100);
-  treeTrig->SetBranchAddress("HLT_PFJet140_v35", &triggerDecision_120);
+  // treeTrig->SetBranchAddress("HLT_PFJet40_ZeroBiasCopy_v1", &triggerDecision_40);
+  // treeTrig->SetBranchAddress("HLT_PFJet60_v37", &triggerDecision_60);
+  // treeTrig->SetBranchAddress("HLT_PFJet80_L1SingleJet60_v1", &triggerDecision_80);
+  // treeTrig->SetBranchAddress("HLT_PFJet110_v16", &triggerDecision_100);
+  // treeTrig->SetBranchAddress("HLT_PFJet140_v35", &triggerDecision_120);
 
     
     
