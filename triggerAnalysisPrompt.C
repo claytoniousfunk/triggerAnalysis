@@ -181,11 +181,7 @@ void triggerAnalysisPrompt(int file_i = 1){
   Int_t          triggerDecision_120;
 
 
-  triggerDecision_40 = triggerDecisions.at(0);
-  triggerDecision_60 = triggerDecisions.at(1);
-  triggerDecision_80 = triggerDecisions.at(2);
-  triggerDecision_100 = triggerDecisions.at(3);
-  triggerDecision_120 = triggerDecisions.at(4);
+
 
   
   std::cout << "Setting Event, lumi, and run branchAdresses...";
@@ -470,6 +466,11 @@ void triggerAnalysisPrompt(int file_i = 1){
 
 
     treeTrig->GetEntry(i_entry); // get trigger decision from HLT emulation
+    triggerDecision_40 = triggerDecisions.at(0);
+    triggerDecision_60 = triggerDecisions.at(1);
+    triggerDecision_80 = triggerDecisions.at(2);
+    triggerDecision_100 = triggerDecisions.at(3);
+    triggerDecision_120 = triggerDecisions.at(4);
 
     //cout << "triggerDecision_40 = " << triggerDecision_40 << endl;
 
