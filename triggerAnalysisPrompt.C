@@ -161,7 +161,7 @@ void triggerAnalysisPrompt(int file_i = 1){
 
   for(int i = 0; i < triggerList.size(); i++){
     treeTrig->SetBranchStatus(triggerList.at(i).c_str(),1);
-    triggerDecisions.push_back(0);
+    //triggerDecisions.push_back(0);
     treeTrig->SetBranchAddress(triggerList.at(i).c_str(),&triggerDecisions.at(i));
   }
 
@@ -466,6 +466,7 @@ void triggerAnalysisPrompt(int file_i = 1){
 
 
     treeTrig->GetEntry(i_entry); // get trigger decision from HLT emulation
+
     triggerDecision_40 = triggerDecisions.at(0);
     triggerDecision_60 = triggerDecisions.at(1);
     triggerDecision_80 = triggerDecisions.at(2);
