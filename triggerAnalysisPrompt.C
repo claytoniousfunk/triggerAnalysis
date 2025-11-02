@@ -81,7 +81,7 @@ void triggerAnalysisPrompt(int file_i = 1){
   std::cout << "Processing file " << file_i << std::endl;
 
 
-  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_SpecialZeroBias1_2025-11-01/out_%i.root",file_i);
+  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_SpecialZeroBias1_2025-11-02/out_%i.root",file_i);
   
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
