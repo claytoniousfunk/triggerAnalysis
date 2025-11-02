@@ -395,7 +395,7 @@ void triggerAnalysisPrompt(int file_i = 1){
     triggerDecision_100 = triggerDecisions[3];
     triggerDecision_120 = triggerDecisions[4];
 
-    if(triggerDecision_100==1) cout << "triggerDecision_100 = " << triggerDecisions.at(3) << endl;
+    if(triggerDecision_100==1) cout << "triggerDecision_100 = " << triggerDecisions[3] << endl;
 
 
     if(triggerDecision_40==1) {// only fill the numerator if the trigger is on.
