@@ -157,11 +157,10 @@ void triggerAnalysisPrompt(int file_i = 1){
   triggerList.push_back("HLT_PFJet140_v35");
 
 
-  std::vector<Int_t> triggerDecisions;
+  std::vector<Int_t> triggerDecisions(triggerList.size(),0);
 
   for(int i = 0; i < triggerList.size(); i++){
     treeTrig->SetBranchStatus(triggerList.at(i).c_str(),1);
-    triggerDecisions.push_back(0);
     treeTrig->SetBranchAddress(triggerList.at(i).c_str(),&triggerDecisions.at(i));
   }
 
