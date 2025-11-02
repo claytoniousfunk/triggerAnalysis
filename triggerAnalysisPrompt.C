@@ -162,6 +162,7 @@ void triggerAnalysisPrompt(int file_i = 1){
   //std::vector<Int_t> triggerDecisions(triggerList.size(),0);
 
   for(int i = 0; i < triggerList.size(); i++){
+    std::cout << "Setting branch status/address for " << triggerList.at(i).c_str() << "\n";
     treeTrig->SetBranchStatus(triggerList.at(i).c_str(),1);
     treeTrig->SetBranchAddress(triggerList.at(i).c_str(),&triggerDecisions[i]);
   }
