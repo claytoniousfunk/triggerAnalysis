@@ -157,7 +157,7 @@ void triggerAnalysisPrompt(int file_i = 1){
   triggerList.push_back("HLT_PFJet140_v35");
 
   const int N_triggers = 7;
-  Int_t triggerDecisions[N_triggers];
+  Int_t triggerDecisions[N_triggers] = {0};
   
   //std::vector<Int_t> triggerDecisions(triggerList.size(),0);
 
