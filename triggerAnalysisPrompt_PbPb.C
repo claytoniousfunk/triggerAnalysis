@@ -63,7 +63,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 
 
-void triggerAnalysisPrompt_lowPUPP(int file_i = 1){
+void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
   std::ifstream infile("./fileNames/fileNames_HIPhysicsRawPrime0_399465.txt");
   if(!infile.is_open()){
