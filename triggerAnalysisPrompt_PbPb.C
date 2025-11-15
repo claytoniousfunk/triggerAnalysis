@@ -14,13 +14,16 @@ Float_t NPhiBins = 100;
 
 TH1D *denom = new TH1D("denom","denom",NPtBins,ptMin,ptMax);
 
-TH1D *num_40_ZeroBiasCopy = new TH1D("num_40_ZeroBiasCopy","num_40_ZeroBiasCopy",NPtBins,ptMin,ptMax);
-TH1D *num_40_L1Jet20 = new TH1D("num_40_L1Jet20","num_40_L1Jet20",NPtBins,ptMin,ptMax);
-TH1D *num_40_L1Jet24 = new TH1D("num_40_L1Jet24","num_40_L1Jet24",NPtBins,ptMin,ptMax);
+TH1D *num_40 = new TH1D("num_40","num_40",NPtBins,ptMin,ptMax);
 TH1D *num_60 = new TH1D("num_60","num_60",NPtBins,ptMin,ptMax);
-TH1D *num_80_L1SingleJet60 = new TH1D("num_80_L1SingleJet60","num_80_L1SingleJet60",NPtBins,ptMin,ptMax);
-TH1D *num_110 = new TH1D("num_110","num_110",NPtBins,ptMin,ptMax);
-TH1D *num_140 = new TH1D("num_140","num_140",NPtBins,ptMin,ptMax);
+TH1D *num_80 = new TH1D("num_80","num_80",NPtBins,ptMin,ptMax);
+TH1D *num_100 = new TH1D("num_100","num_100",NPtBins,ptMin,ptMax);
+TH1D *num_120 = new TH1D("num_120","num_120",NPtBins,ptMin,ptMax);
+TH1D *num_40_Fwd = new TH1D("num_40_Fwd","num_40_Fwd",NPtBins,ptMin,ptMax);
+TH1D *num_60_Fwd = new TH1D("num_60_Fwd","num_60_Fwd",NPtBins,ptMin,ptMax);
+TH1D *num_80_Fwd = new TH1D("num_80_Fwd","num_80_Fwd",NPtBins,ptMin,ptMax);
+TH1D *num_100_Fwd = new TH1D("num_100_Fwd","num_100_Fwd",NPtBins,ptMin,ptMax);
+TH1D *num_120_Fwd = new TH1D("num_120_Fwd","num_120_Fwd",NPtBins,ptMin,ptMax);
 
 
 
@@ -62,7 +65,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 void triggerAnalysisPrompt_lowPUPP(int file_i = 1){
 
-  std::ifstream infile("./fileNames/fileNames_SpecialZeroBias1_398683.txt");
+  std::ifstream infile("./fileNames/fileNames_HIPhysicsRawPrime0_399465.txt");
   if(!infile.is_open()){
     std::cerr << "Error: Could not open fileNames.txt" << std::endl;
     return;
@@ -81,7 +84,7 @@ void triggerAnalysisPrompt_lowPUPP(int file_i = 1){
   std::cout << "Processing file " << file_i << std::endl;
 
 
-  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_SpecialZeroBias1_2025-11-02/out_%i.root",file_i);
+  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0_399465_2025-11-15/out_%i.root",file_i);
   
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
@@ -321,13 +324,11 @@ void triggerAnalysisPrompt_lowPUPP(int file_i = 1){
       
             
       denom->Fill(maxPt_denom,weight);
-      if(triggerDecision_40_ZeroBiasCopy==1) num_40_ZeroBiasCopy->Fill(maxPt_denom,weight);
-      if(triggerDecision_40_L1Jet20==1) num_40_L1Jet20->Fill(maxPt_denom,weight);
-      if(triggerDecision_40_L1Jet24==1) num_40_L1Jet24->Fill(maxPt_denom,weight);
+      if(triggerDecision_40==1) num_40->Fill(maxPt_denom,weight);
       if(triggerDecision_60==1) num_60->Fill(maxPt_denom,weight);
-      if(triggerDecision_80_L1SingleJet60==1) num_80_L1SingleJet60->Fill(maxPt_denom,weight);
-      if(triggerDecision_110==1) num_110->Fill(maxPt_denom,weight);
-      if(triggerDecision_140==1) num_140->Fill(maxPt_denom,weight);
+      if(triggerDecision_80==1) num_80->Fill(maxPt_denom,weight);
+      if(triggerDecision_100==1) num_100->Fill(maxPt_denom,weight);
+      if(triggerDecision_120==1) num_120->Fill(maxPt_denom,weight);
             
     }
 
@@ -342,13 +343,11 @@ void triggerAnalysisPrompt_lowPUPP(int file_i = 1){
 
   denom->Write();
 
-  num_40_ZeroBiasCopy->Write();
-  num_40_L1Jet20->Write();
-  num_40_L1Jet24->Write();
+  num_40->Write();
   num_60->Write();
-  num_80_L1SingleJet60->Write();
-  num_110->Write();
-  num_140->Write();
+  num_80->Write();
+  num_100->Write();
+  num_120->Write();
 
 
   wf->Close();
