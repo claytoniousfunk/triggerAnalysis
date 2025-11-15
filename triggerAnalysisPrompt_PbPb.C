@@ -13,6 +13,7 @@ Float_t phiMax = TMath::Pi();
 Float_t NPhiBins = 100;
 
 TH1D *denom = new TH1D("denom","denom",NPtBins,ptMin,ptMax);
+TH1D *denom_Fwd = new TH1D("denom_Fwd","denom_Fwd",NPtBins,ptMin,ptMax);
 
 TH1D *num_40 = new TH1D("num_40","num_40",NPtBins,ptMin,ptMax);
 TH1D *num_60 = new TH1D("num_60","num_60",NPtBins,ptMin,ptMax);
@@ -84,7 +85,7 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   std::cout << "Processing file " << file_i << std::endl;
 
 
-  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0_399465_2025-11-15/out_%i.root",file_i);
+  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0_399465_PFJetPT_2025-11-15/out_%i.root",file_i);
   
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
@@ -213,15 +214,20 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   Float_t jteta[maxJets];
   Float_t jtphi[maxJets];
   Int_t nref;
+  Float_t calopt[maxJets];
+  Float_t caloeta[maxJets];
+  Float_t calophi[maxJets];
+  Int_t ncalo;
+  
 
   treeJet->SetBranchAddress("jtpt",&jtpt);
   treeJet->SetBranchAddress("jteta",&jteta);
   treeJet->SetBranchAddress("jtphi",&jtphi);
   treeJet->SetBranchAddress("nref",&nref);
-  // treeJet->SetBranchAddress("calopt",&jtpt);
-  // treeJet->SetBranchAddress("caloeta",&jteta);
-  // treeJet->SetBranchAddress("calophi",&jtphi);
-  // treeJet->SetBranchAddress("ncalo",&nref);
+  treeJet->SetBranchAddress("calopt",&calopt);
+  treeJet->SetBranchAddress("caloeta",&caloeta);
+  treeJet->SetBranchAddress("calophi",&calophi);
+  treeJet->SetBranchAddress("ncalo",&ncalo);
     
     
   treeHiEvt = (TTree*)fileTmp->Get("hiEvtAnalyzer/HiTree");
@@ -315,13 +321,11 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
     }
 
     //if(fabs(maxEta_denom)<3.2 || fabs(maxEta_denom)>4.7) continue; // skip event if the leading jet is outside eta range
-    if(fabs(maxEta_denom)>1.5) continue; // skip event if the leading jet is outside eta range
+    //if() continue; // skip event if the leading jet is outside eta range
 
 	
 	
-    if(maxPt_denom > 0) {
-
-      
+    if(fabs(maxEta_denom)<1.5 && maxPt_denom > 0) {
             
       denom->Fill(maxPt_denom,weight);
       if(triggerDecision_40==1) num_40->Fill(maxPt_denom,weight);
@@ -330,6 +334,17 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
       if(triggerDecision_100==1) num_100->Fill(maxPt_denom,weight);
       if(triggerDecision_120==1) num_120->Fill(maxPt_denom,weight);
             
+    }
+
+    if(fabs(maxEta_denom)>3.2 && fabs(maxEta_denom)<4.7 && maxPt_denom > 0){
+
+      denom_Fwd->Fill(maxPt_denom,weight);
+      if(triggerDecision_40_Fwd==1) num_40_Fwd->Fill(maxPt_denom,weight);
+      if(triggerDecision_60_Fwd==1) num_60_Fwd->Fill(maxPt_denom,weight);
+      if(triggerDecision_80_Fwd==1) num_80_Fwd->Fill(maxPt_denom,weight);
+      if(triggerDecision_100_Fwd==1) num_100_Fwd->Fill(maxPt_denom,weight);
+      if(triggerDecision_120_Fwd==1) num_120_Fwd->Fill(maxPt_denom,weight);
+
     }
 
 
