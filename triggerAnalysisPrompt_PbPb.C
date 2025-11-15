@@ -66,7 +66,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
-  std::ifstream infile("./fileNames/fileNames_HIPhysicsRawPrime0_399466.txt");
+  std::ifstream infile("./fileNames/fileNames_HIPhysicsRawPrime0_399467.txt");
   if(!infile.is_open()){
     std::cerr << "Error: Could not open fileNames.txt" << std::endl;
     return;
@@ -85,7 +85,7 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   std::cout << "Processing file " << file_i << std::endl;
 
 
-  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0_399466_CaloJetPT_2025-11-15/out_%i.root",file_i);
+  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0_399467_CaloJetPT_2025-11-15/out_%i.root",file_i);
   
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
