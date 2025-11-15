@@ -66,7 +66,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
-  std::ifstream infile("./fileNames/fileNames_HIPhysicsRawPrime0_399467.txt");
+  std::ifstream infile("./fileNames/fileNames_HIPhysicsRawPrime0_399465.txt");
   if(!infile.is_open()){
     std::cerr << "Error: Could not open fileNames.txt" << std::endl;
     return;
@@ -85,7 +85,7 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   std::cout << "Processing file " << file_i << std::endl;
 
 
-  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0_399467_PFJetPT_2025-11-15/out_%i.root",file_i);
+  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0_399465_CaloJetPT_2025-11-15/out_%i.root",file_i);
   
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
@@ -220,14 +220,14 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   Int_t ncalo;
   
 
-  treeJet->SetBranchAddress("jtpt",&jtpt);
-  treeJet->SetBranchAddress("jteta",&jteta);
-  treeJet->SetBranchAddress("jtphi",&jtphi);
-  treeJet->SetBranchAddress("nref",&nref);
-  treeJet->SetBranchAddress("calopt",&calopt);
-  treeJet->SetBranchAddress("caloeta",&caloeta);
-  treeJet->SetBranchAddress("calophi",&calophi);
-  treeJet->SetBranchAddress("ncalo",&ncalo);
+  // treeJet->SetBranchAddress("jtpt",&jtpt);
+  // treeJet->SetBranchAddress("jteta",&jteta);
+  // treeJet->SetBranchAddress("jtphi",&jtphi);
+  // treeJet->SetBranchAddress("nref",&nref);
+  treeJet->SetBranchAddress("calopt",&jtpt);
+  treeJet->SetBranchAddress("caloeta",&jteta);
+  treeJet->SetBranchAddress("calophi",&jtphi);
+  treeJet->SetBranchAddress("ncalo",&nref);
     
     
   treeHiEvt = (TTree*)fileTmp->Get("hiEvtAnalyzer/HiTree");
