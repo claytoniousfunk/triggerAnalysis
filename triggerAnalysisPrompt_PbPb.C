@@ -66,7 +66,7 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
 
 void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
-  std::ifstream infile("./fileNames/fileNames_HIPhysicsRawPrime0to14_399499.txt");
+  std::ifstream infile("./fileNames/fileNames_HIPhysicsRawPrime0to9_399465.txt");
   if(!infile.is_open()){
     std::cerr << "Error: Could not open fileNames.txt" << std::endl;
     return;
@@ -85,7 +85,7 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   std::cout << "Processing file " << file_i << std::endl;
 
 
-  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0to14_399499_CaloJetPT/out_%i.root",file_i);
+  TString output = Form("/eos/cms/store/group/phys_heavyions/cbennett/scanningOutput/output_triggerAnalysisPrompt_HIPhysicsRawPrime0to9_399465_CaloJetPT/out_%i.root",file_i);
   
 
   std::cout << "running triggerAnalysisPrompt()" << std::endl;
@@ -196,8 +196,8 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
     
   std::map<unsigned long long, int> runLumiEvtToEntryMap;
     
-  //treeJet = (TTree*)fileTmp->Get("ak0PFJetAnalyzer/t");
-  treeJet = (TTree*)fileTmp->Get("akCs4PFJetAnalyzer/t");
+  treeJet = (TTree*)fileTmp->Get("ak0PFJetAnalyzer/t");
+  //treeJet = (TTree*)fileTmp->Get("akCs4PFJetAnalyzer/t");
   treeJet->SetBranchStatus("*",0);     // disable all branches
   treeJet->SetBranchStatus("jtpt",1);   // enable event information
   treeJet->SetBranchStatus("jteta",1);
