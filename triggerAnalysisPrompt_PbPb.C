@@ -196,8 +196,8 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
     
   std::map<unsigned long long, int> runLumiEvtToEntryMap;
     
-  treeJet = (TTree*)fileTmp->Get("ak0PFJetAnalyzer/t");
-  //treeJet = (TTree*)fileTmp->Get("akCs4PFJetAnalyzer/t");
+  //treeJet = (TTree*)fileTmp->Get("ak0PFJetAnalyzer/t");
+  treeJet = (TTree*)fileTmp->Get("akCs4PFJetAnalyzer/t");
   treeJet->SetBranchStatus("*",0);     // disable all branches
   treeJet->SetBranchStatus("jtpt",1);   // enable event information
   treeJet->SetBranchStatus("jteta",1);
