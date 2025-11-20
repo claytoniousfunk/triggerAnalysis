@@ -272,12 +272,12 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   // loop through reco objects
   for (Long64_t j_entry = 0; j_entry < entriesTmp; ++j_entry){
 
-    std::cout << "processing event " << j_entry << "\n";
-    std::cout << "grabbing treeggHiNtuplizer " << j_entry << "\n";
+    // std::cout << "processing event " << j_entry << "\n";
+    // std::cout << "grabbing treeggHiNtuplizer " << j_entry << "\n";
     treeggHiNtuplizer->GetEntry(j_entry);
-    std::cout << "grabbing treeHiEvt " << j_entry << "\n";
+    // std::cout << "grabbing treeHiEvt " << j_entry << "\n";
     treeHiEvt->GetEntry(j_entry);
-    std::cout << "grabbing treeJet " << j_entry << "\n";
+    // std::cout << "grabbing treeJet " << j_entry << "\n";
     treeJet->GetEntry(j_entry);
 
     //cout << "weight = " << weight << endl;
