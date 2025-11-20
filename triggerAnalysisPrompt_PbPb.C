@@ -272,6 +272,8 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   // loop through reco objects
   for (Long64_t j_entry = 0; j_entry < entriesTmp; ++j_entry){
 
+    std::cout << "processing event " << j_entry << "\n";
+
     treeggHiNtuplizer->GetEntry(j_entry);
     treeHiEvt->GetEntry(j_entry);
     treeJet->GetEntry(j_entry);
