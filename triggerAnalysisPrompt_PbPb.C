@@ -407,8 +407,7 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
   auto wf = TFile::Open(output,"recreate");
 
-  denom->Write();
-  denom_Fwd->Write();
+  
 
   num_40->Write();
   num_60->Write();
@@ -416,11 +415,23 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   num_100->Write();
   num_120->Write();
 
+  denom_40->Write();
+  denom_60->Write();
+  denom_80->Write();
+  denom_100->Write();
+  denom_120->Write();
+
   num_40_Fwd->Write();
   num_60_Fwd->Write();
   num_80_Fwd->Write();
   num_100_Fwd->Write();
   num_120_Fwd->Write();
+
+  denom_40_Fwd->Write();
+  denom_60_Fwd->Write();
+  denom_80_Fwd->Write();
+  denom_100_Fwd->Write();
+  denom_120_Fwd->Write();
 
 
   wf->Close();
