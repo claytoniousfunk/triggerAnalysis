@@ -12,26 +12,33 @@ Float_t phiMin = -TMath::Pi();
 Float_t phiMax = TMath::Pi();
 Float_t NPhiBins = 100;
 
-TH1D *denom = new TH1D("denom","denom",NPtBins,ptMin,ptMax);
-TH1D *denom_Fwd = new TH1D("denom_Fwd","denom_Fwd",NPtBins,ptMin,ptMax);
 
 TH1D *num_40 = new TH1D("num_40","num_40",NPtBins,ptMin,ptMax);
 TH1D *num_60 = new TH1D("num_60","num_60",NPtBins,ptMin,ptMax);
 TH1D *num_80 = new TH1D("num_80","num_80",NPtBins,ptMin,ptMax);
 TH1D *num_100 = new TH1D("num_100","num_100",NPtBins,ptMin,ptMax);
 TH1D *num_120 = new TH1D("num_120","num_120",NPtBins,ptMin,ptMax);
+
+TH1D *denom_40 = new TH1D("denom_40","denom_40",NPtBins,ptMin,ptMax);
+TH1D *denom_60 = new TH1D("denom_60","denom_60",NPtBins,ptMin,ptMax);
+TH1D *denom_80 = new TH1D("denom_80","denom_80",NPtBins,ptMin,ptMax);
+TH1D *denom_100 = new TH1D("denom_100","denom_100",NPtBins,ptMin,ptMax);
+TH1D *denom_120 = new TH1D("denom_120","denom_120",NPtBins,ptMin,ptMax);
+
+
 TH1D *num_40_Fwd = new TH1D("num_40_Fwd","num_40_Fwd",NPtBins,ptMin,ptMax);
 TH1D *num_60_Fwd = new TH1D("num_60_Fwd","num_60_Fwd",NPtBins,ptMin,ptMax);
 TH1D *num_80_Fwd = new TH1D("num_80_Fwd","num_80_Fwd",NPtBins,ptMin,ptMax);
 TH1D *num_100_Fwd = new TH1D("num_100_Fwd","num_100_Fwd",NPtBins,ptMin,ptMax);
 TH1D *num_120_Fwd = new TH1D("num_120_Fwd","num_120_Fwd",NPtBins,ptMin,ptMax);
 
-
-
+TH1D *denom_40_Fwd = new TH1D("denom_40_Fwd","denom_40_Fwd",NPtBins,ptMin,ptMax);
+TH1D *denom_60_Fwd = new TH1D("denom_60_Fwd","denom_60_Fwd",NPtBins,ptMin,ptMax);
+TH1D *denom_80_Fwd = new TH1D("denom_80_Fwd","denom_80_Fwd",NPtBins,ptMin,ptMax);
+TH1D *denom_100_Fwd = new TH1D("denom_100_Fwd","denom_100_Fwd",NPtBins,ptMin,ptMax);
+TH1D *denom_120_Fwd = new TH1D("denom_120_Fwd","denom_120_Fwd",NPtBins,ptMin,ptMax);
 
 std::map<unsigned long long, int> runLumiEvtToEntryMap;
-
-
 
 unsigned long long keyFromRunLumiEvent(Int_t run,
                                        Int_t lumi,
@@ -59,10 +66,6 @@ unsigned long long keyFromRunLumiEvent(Int_t run,
   return key;
   
 }
-
-
-
-
 
 void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
@@ -130,7 +133,13 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet100Fwd_v9",1);
   treeTrig->SetBranchStatus("HLT_HIPuAK4CaloJet120Fwd_v9",1);
 
-			    
+  treeTrig->SetBranchStatus("L1_MinimumBiasHF1_AND_BptxAND",1);
+  treeTrig->SetBranchStatus("L1_SingleJet60_BptxAND",1);
+  treeTrig->SetBranchStatus("L1_SingleJet80_BptxAND",1);
+  treeTrig->SetBranchStatus("L1_SingleJet28_FWD_BptxAND",1);
+  treeTrig->SetBranchStatus("L1_SingleJet44_FWD_BptxAND",1);
+  treeTrig->SetBranchStatus("L1_SingleJet64_FWD_BptxAND",1);
+  
     
   
   
@@ -138,22 +147,50 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   ULong64_t      hlt_event;
   Int_t          hlt_lumi;
   Int_t          hlt_run;
+  
+  Int_t          L1TriggerDecision_40;
+  Int_t          L1TiggerDecision_60;
+  Int_t          L1TiggerDecision_80;
+  Int_t          L1TiggerDecision_100;
+  Int_t          L1TiggerDecision_120;
   Int_t          triggerDecision_40;
   Int_t          triggerDecision_60;
   Int_t          triggerDecision_80;
   Int_t          triggerDecision_100;
   Int_t          triggerDecision_120;
+
+
+  Int_t          L1TiggerDecision_40_Fwd;
+  Int_t          L1TiggerDecision_60_Fwd;
+  Int_t          L1TiggerDecision_80_Fwd;
+  Int_t          L1TiggerDecision_100_Fwd;
+  Int_t          L1TiggerDecision_120_Fwd;
   Int_t          triggerDecision_40_Fwd;
   Int_t          triggerDecision_60_Fwd;
   Int_t          triggerDecision_80_Fwd;
   Int_t          triggerDecision_100_Fwd;
   Int_t          triggerDecision_120_Fwd;
 
+
+  L1TeeL1Tig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TiggerDecision_40);
+  L1TeeL1Tig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TiggerDecision_60);
+  L1TeeL1Tig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TiggerDecision_80);
+  L1TeeL1Tig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TiggerDecision_100);
+  L1TeeL1Tig->SetBranchAddress("L1_SingleJet80_BptxAND",&L1TiggerDecision_120);
+
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v8",&triggerDecision_40);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v8",&triggerDecision_60);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v16",&triggerDecision_80);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v16",&triggerDecision_100);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v16",&triggerDecision_120);
+
+  
+  L1TeeL1Tig->SetBranchAddress("L1_SingleJet28_FWD_BptxAND",&L1TiggerDecision_40_Fwd);
+  L1TeeL1Tig->SetBranchAddress("L1_SingleJet44_FWD_BptxAND",&L1TiggerDecision_60_Fwd);
+  L1TeeL1Tig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TiggerDecision_80_Fwd);
+  L1TeeL1Tig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TiggerDecision_100_Fwd);
+  L1TeeL1Tig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TiggerDecision_120_Fwd);
+
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v9",&triggerDecision_40_Fwd);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v9",&triggerDecision_60_Fwd);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Fwd_v9",&triggerDecision_80_Fwd);
@@ -331,7 +368,12 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
 	
     if(fabs(maxEta_denom)<1.5 && maxPt_denom > 0) {
             
-      denom->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_40==1) denom_40->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_60==1) denom_60->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_80==1) denom_80->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_100==1) denom_100->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_120==1) denom_120->Fill(maxPt_denom,weight);
+      
       if(triggerDecision_40==1) num_40->Fill(maxPt_denom,weight);
       if(triggerDecision_60==1) num_60->Fill(maxPt_denom,weight);
       if(triggerDecision_80==1) num_80->Fill(maxPt_denom,weight);
@@ -342,7 +384,12 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
     if(fabs(maxEta_denom)>3.2 && fabs(maxEta_denom)<4.7 && maxPt_denom > 0){
 
-      denom_Fwd->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_40_Fwd==1) denom_40_Fwd->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_60_Fwd==1) denom_60_Fwd->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_80_Fwd==1) denom_80_Fwd->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_100_Fwd==1) denom_100_Fwd->Fill(maxPt_denom,weight);
+      if(L1TiggerDecision_120_Fwd==1) denom_120_Fwd->Fill(maxPt_denom,weight);
+      
       if(triggerDecision_40_Fwd==1) num_40_Fwd->Fill(maxPt_denom,weight);
       if(triggerDecision_60_Fwd==1) num_60_Fwd->Fill(maxPt_denom,weight);
       if(triggerDecision_80_Fwd==1) num_80_Fwd->Fill(maxPt_denom,weight);
