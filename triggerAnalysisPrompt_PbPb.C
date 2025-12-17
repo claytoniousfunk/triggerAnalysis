@@ -149,10 +149,10 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   Int_t          hlt_run;
   
   Int_t          L1TriggerDecision_40;
-  Int_t          L1TiggerDecision_60;
-  Int_t          L1TiggerDecision_80;
-  Int_t          L1TiggerDecision_100;
-  Int_t          L1TiggerDecision_120;
+  Int_t          L1TriggerDecision_60;
+  Int_t          L1TriggerDecision_80;
+  Int_t          L1TriggerDecision_100;
+  Int_t          L1TriggerDecision_120;
   Int_t          triggerDecision_40;
   Int_t          triggerDecision_60;
   Int_t          triggerDecision_80;
@@ -160,11 +160,11 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   Int_t          triggerDecision_120;
 
 
-  Int_t          L1TiggerDecision_40_Fwd;
-  Int_t          L1TiggerDecision_60_Fwd;
-  Int_t          L1TiggerDecision_80_Fwd;
-  Int_t          L1TiggerDecision_100_Fwd;
-  Int_t          L1TiggerDecision_120_Fwd;
+  Int_t          L1TriggerDecision_40_Fwd;
+  Int_t          L1TriggerDecision_60_Fwd;
+  Int_t          L1TriggerDecision_80_Fwd;
+  Int_t          L1TriggerDecision_100_Fwd;
+  Int_t          L1TriggerDecision_120_Fwd;
   Int_t          triggerDecision_40_Fwd;
   Int_t          triggerDecision_60_Fwd;
   Int_t          triggerDecision_80_Fwd;
@@ -172,11 +172,11 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   Int_t          triggerDecision_120_Fwd;
 
 
-  L1TeeL1Tig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TiggerDecision_40);
-  L1TeeL1Tig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TiggerDecision_60);
-  L1TeeL1Tig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TiggerDecision_80);
-  L1TeeL1Tig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TiggerDecision_100);
-  L1TeeL1Tig->SetBranchAddress("L1_SingleJet80_BptxAND",&L1TiggerDecision_120);
+  treeTrig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TriggerDecision_40);
+  treeTrig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TriggerDecision_60);
+  treeTrig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TriggerDecision_80);
+  treeTrig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TriggerDecision_100);
+  treeTrig->SetBranchAddress("L1_SingleJet80_BptxAND",&L1TriggerDecision_120);
 
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v8",&triggerDecision_40);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v8",&triggerDecision_60);
@@ -185,11 +185,11 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v16",&triggerDecision_120);
 
   
-  L1TeeL1Tig->SetBranchAddress("L1_SingleJet28_FWD_BptxAND",&L1TiggerDecision_40_Fwd);
-  L1TeeL1Tig->SetBranchAddress("L1_SingleJet44_FWD_BptxAND",&L1TiggerDecision_60_Fwd);
-  L1TeeL1Tig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TiggerDecision_80_Fwd);
-  L1TeeL1Tig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TiggerDecision_100_Fwd);
-  L1TeeL1Tig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TiggerDecision_120_Fwd);
+  treeTrig->SetBranchAddress("L1_SingleJet28_FWD_BptxAND",&L1TriggerDecision_40_Fwd);
+  treeTrig->SetBranchAddress("L1_SingleJet44_FWD_BptxAND",&L1TriggerDecision_60_Fwd);
+  treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_80_Fwd);
+  treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_100_Fwd);
+  treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_120_Fwd);
 
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v9",&triggerDecision_40_Fwd);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v9",&triggerDecision_60_Fwd);
@@ -368,11 +368,11 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
 	
     if(fabs(maxEta_denom)<1.5 && maxPt_denom > 0) {
             
-      if(L1TiggerDecision_40==1) denom_40->Fill(maxPt_denom,weight);
-      if(L1TiggerDecision_60==1) denom_60->Fill(maxPt_denom,weight);
-      if(L1TiggerDecision_80==1) denom_80->Fill(maxPt_denom,weight);
-      if(L1TiggerDecision_100==1) denom_100->Fill(maxPt_denom,weight);
-      if(L1TiggerDecision_120==1) denom_120->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_40==1) denom_40->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_60==1) denom_60->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_80==1) denom_80->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_100==1) denom_100->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_120==1) denom_120->Fill(maxPt_denom,weight);
       
       if(triggerDecision_40==1) num_40->Fill(maxPt_denom,weight);
       if(triggerDecision_60==1) num_60->Fill(maxPt_denom,weight);
@@ -384,11 +384,11 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
     if(fabs(maxEta_denom)>3.2 && fabs(maxEta_denom)<4.7 && maxPt_denom > 0){
 
-      if(L1TiggerDecision_40_Fwd==1) denom_40_Fwd->Fill(maxPt_denom,weight);
-      if(L1TiggerDecision_60_Fwd==1) denom_60_Fwd->Fill(maxPt_denom,weight);
-      if(L1TiggerDecision_80_Fwd==1) denom_80_Fwd->Fill(maxPt_denom,weight);
-      if(L1TiggerDecision_100_Fwd==1) denom_100_Fwd->Fill(maxPt_denom,weight);
-      if(L1TiggerDecision_120_Fwd==1) denom_120_Fwd->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_40_Fwd==1) denom_40_Fwd->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_60_Fwd==1) denom_60_Fwd->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_80_Fwd==1) denom_80_Fwd->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_100_Fwd==1) denom_100_Fwd->Fill(maxPt_denom,weight);
+      if(L1TriggerDecision_120_Fwd==1) denom_120_Fwd->Fill(maxPt_denom,weight);
       
       if(triggerDecision_40_Fwd==1) num_40_Fwd->Fill(maxPt_denom,weight);
       if(triggerDecision_60_Fwd==1) num_60_Fwd->Fill(maxPt_denom,weight);
