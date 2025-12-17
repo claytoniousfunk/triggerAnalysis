@@ -173,9 +173,9 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
 
   treeTrig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TriggerDecision_40);
-  treeTrig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TriggerDecision_60);
+  //treeTrig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TriggerDecision_60);
   treeTrig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TriggerDecision_80);
-  treeTrig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TriggerDecision_100);
+  //treeTrig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TriggerDecision_100);
   treeTrig->SetBranchAddress("L1_SingleJet80_BptxAND",&L1TriggerDecision_120);
 
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v8",&triggerDecision_40);
@@ -188,8 +188,8 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
   treeTrig->SetBranchAddress("L1_SingleJet28_FWD_BptxAND",&L1TriggerDecision_40_Fwd);
   treeTrig->SetBranchAddress("L1_SingleJet44_FWD_BptxAND",&L1TriggerDecision_60_Fwd);
   treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_80_Fwd);
-  treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_100_Fwd);
-  treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_120_Fwd);
+  //treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_100_Fwd);
+  //treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_120_Fwd);
 
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v9",&triggerDecision_40_Fwd);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v9",&triggerDecision_60_Fwd);
@@ -337,6 +337,11 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
 
     treeTrig->GetEntry(i_entry); // get trigger decision from HLT emulation
 
+    // set identical L1s
+    L1TriggerDecision_60 = L1TriggerDecision_40;
+    L1TriggerDecision_100 = L1TriggerDecision_80;
+    L1TriggerDecision_100_Fwd = L1TriggerDecision_80_Fwd;
+    L1TriggerDecision_120_Fwd = L1TriggerDecision_80_Fwd;
 	
     //if(runLumiEvtToEntryMap.count(key) == 0) continue; // skip reco event if there is no HLT event match
     //else i_entry = runLumiEvtToEntryMap.at(key);
