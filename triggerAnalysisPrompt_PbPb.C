@@ -342,6 +342,18 @@ void triggerAnalysisPrompt_PbPb(int file_i = 1){
     L1TriggerDecision_100 = L1TriggerDecision_80;
     L1TriggerDecision_100_Fwd = L1TriggerDecision_80_Fwd;
     L1TriggerDecision_120_Fwd = L1TriggerDecision_80_Fwd;
+
+    cout << "getting entry " << i_entry << "\n";
+    cout << "L1TriggerDecision_40 = " << L1TriggerDecision_40 << "\n";
+    cout << "L1TriggerDecision_60 = " << L1TriggerDecision_60 << "\n";
+    cout << "L1TriggerDecision_80 = " << L1TriggerDecision_80 << "\n";
+    cout << "L1TriggerDecision_100 = " << L1TriggerDecision_100 << "\n";
+    cout << "L1TriggerDecision_120 = " << L1TriggerDecision_120 << "\n";
+    cout << "L1TriggerDecision_40_Fwd = " << L1TriggerDecision_40_Fwd << "\n";
+    cout << "L1TriggerDecision_60_Fwd = " << L1TriggerDecision_60_Fwd << "\n";
+    cout << "L1TriggerDecision_80_Fwd = " << L1TriggerDecision_80_Fwd << "\n";
+    cout << "L1TriggerDecision_100_Fwd = " << L1TriggerDecision_100_Fwd << "\n";
+    cout << "L1TriggerDecision_120_Fwd = " << L1TriggerDecision_120_Fwd << "\n\n";
 	
     //if(runLumiEvtToEntryMap.count(key) == 0) continue; // skip reco event if there is no HLT event match
     //else i_entry = runLumiEvtToEntryMap.at(key);
