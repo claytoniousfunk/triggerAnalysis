@@ -104,6 +104,7 @@ void triggerAnalysisPrompt_PbPb_2024(int file_i = 1){
   TTree* treeJet = 0;
   TTree* treeHiEvt = 0;
   TTree* treeTrig = 0;
+  TTree* treeSkim = 0;
         
   TFile* fileTmp = 0;
   TFile* fileTrig = 0;
@@ -140,7 +141,13 @@ void triggerAnalysisPrompt_PbPb_2024(int file_i = 1){
   treeTrig->SetBranchStatus("L1_SingleJet44_FWD_BptxAND",1);
   treeTrig->SetBranchStatus("L1_SingleJet64_FWD_BptxAND",1);
   
-    
+
+  std::string treeSkimPath = "skimanalysis/HltTree";
+  treeSkim = (TTree*)fileTrig->Get(treeSkimPath.c_str());
+  treeSkim->SetBranchStatus("*",0);     // disable all branches
+  treeSkim->SetBranchStatus("pprimaryVertexFilter",1);
+  treeSkim->SetBranchStatus("pclusterCompatibilityFilter",1);
+  treeSkim->SetBranchStatus("pphfCoincFilter2Th4",1);
   
   
   //Int_t hlt_event;
@@ -159,7 +166,6 @@ void triggerAnalysisPrompt_PbPb_2024(int file_i = 1){
   Int_t          triggerDecision_100;
   Int_t          triggerDecision_120;
 
-
   Int_t          L1TriggerDecision_40_Fwd;
   Int_t          L1TriggerDecision_60_Fwd;
   Int_t          L1TriggerDecision_80_Fwd;
@@ -170,8 +176,7 @@ void triggerAnalysisPrompt_PbPb_2024(int file_i = 1){
   Int_t          triggerDecision_80_Fwd;
   Int_t          triggerDecision_100_Fwd;
   Int_t          triggerDecision_120_Fwd;
-
-
+  
   treeTrig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TriggerDecision_40);
   //treeTrig->SetBranchAddress("L1_MinimumBiasHF1_AND_BptxAND",&L1TriggerDecision_60);
   treeTrig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TriggerDecision_80);
@@ -196,14 +201,21 @@ void triggerAnalysisPrompt_PbPb_2024(int file_i = 1){
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Fwd_v7",&triggerDecision_80_Fwd);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v7",&triggerDecision_100_Fwd);
   treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v7",&triggerDecision_120_Fwd);
-  
-
-  
-  std::cout << "Setting Event, lumi, and run branchAdresses...";
+ 
+  //std::cout << "Setting Event, lumi, and run branchAdresses...";
   treeTrig->SetBranchAddress("Event", &hlt_event);
   treeTrig->SetBranchAddress("LumiBlock", &hlt_lumi);
   treeTrig->SetBranchAddress("Run", &hlt_run);
-    
+
+
+
+  Int_t          vertexFilter;
+  Int_t          clusterFilter;
+  Int_t          hfFilter;
+
+  treeSkim->SetBranchAddress("pprimaryVertexFilter",&vertexFilter);
+  treeSkim->SetBranchAddress("pclusterCompatibilityFilter",&clusterFilter);
+  treeSkim->SetBranchAddress("pphfCoincFilter2Th4",&hfFilter);
   
     
   std::cout << "done" << std::endl;
@@ -309,19 +321,18 @@ void triggerAnalysisPrompt_PbPb_2024(int file_i = 1){
   // loop through reco objects
   for (Long64_t j_entry = 0; j_entry < entriesTmp; ++j_entry){
 
-    // std::cout << "processing event " << j_entry << "\n";
-    // std::cout << "grabbing treeggHiNtuplizer " << j_entry << "\n";
+    
     treeggHiNtuplizer->GetEntry(j_entry);
-    // std::cout << "grabbing treeHiEvt " << j_entry << "\n";
     treeHiEvt->GetEntry(j_entry);
-    // std::cout << "grabbing treeJet " << j_entry << "\n";
     treeJet->GetEntry(j_entry);
+    treeSkim->GetEntry(j_entry);
 
     //cout << "weight = " << weight << endl;
   	
     // event cuts
     if(fabs(vz)>15.0) continue;
-    //if(hiBin>180) continue;	
+    if(hiBin>180) continue;
+    if(vertexFilter == 0 || clusterFilter == 0 || hfFilter == 0) continue;
        
     auto j_entry_status = treeJet->GetEntry(j_entry);
         
