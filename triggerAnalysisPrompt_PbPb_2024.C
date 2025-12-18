@@ -178,11 +178,11 @@ void triggerAnalysisPrompt_PbPb_2024(int file_i = 1){
   //treeTrig->SetBranchAddress("L1_SingleJet60_BptxAND",&L1TriggerDecision_100);
   treeTrig->SetBranchAddress("L1_SingleJet80_BptxAND",&L1TriggerDecision_120);
 
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v8",&triggerDecision_40);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v8",&triggerDecision_60);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v16",&triggerDecision_80);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v16",&triggerDecision_100);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v16",&triggerDecision_120);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Eta5p1_MinBiasHF1AND_v6",&triggerDecision_40);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Eta5p1_MinBiasHF1AND_v6",&triggerDecision_60);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Eta5p1_v14",&triggerDecision_80);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Eta5p1_v14",&triggerDecision_100);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Eta5p1_v14",&triggerDecision_120);
 
   
   treeTrig->SetBranchAddress("L1_SingleJet28_FWD_BptxAND",&L1TriggerDecision_40_Fwd);
@@ -191,11 +191,11 @@ void triggerAnalysisPrompt_PbPb_2024(int file_i = 1){
   //treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_100_Fwd);
   //treeTrig->SetBranchAddress("L1_SingleJet64_FWD_BptxAND",&L1TriggerDecision_120_Fwd);
 
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v9",&triggerDecision_40_Fwd);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v9",&triggerDecision_60_Fwd);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Fwd_v9",&triggerDecision_80_Fwd);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v9",&triggerDecision_100_Fwd);
-  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v9",&triggerDecision_120_Fwd);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet40Fwd_v7",&triggerDecision_40_Fwd);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet60Fwd_v7",&triggerDecision_60_Fwd);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet80Fwd_v7",&triggerDecision_80_Fwd);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet100Fwd_v7",&triggerDecision_100_Fwd);
+  treeTrig->SetBranchAddress("HLT_HIPuAK4CaloJet120Fwd_v7",&triggerDecision_120_Fwd);
   
 
   
